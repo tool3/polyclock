@@ -89,7 +89,7 @@ export default function DigitModel(props) {
       }
     }
   }, [state, max])
-
+  materials.dark.color.set('#ffffff')
   return (
     <group {...props} dispose={null}>
       <group
