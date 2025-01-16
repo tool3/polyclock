@@ -1,0 +1,55 @@
+import '~/css/global.scss'
+
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+
+import { isDev, siteURL } from '~/lib/constants'
+
+const GridDebugger = dynamic(() => import('~/lib/debug/grid-debugger'), {
+  ssr: false
+})
+
+import dynamic from 'next/dynamic'
+
+import { AppHooks } from './app-hooks'
+import { Providers } from './providers'
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
+
+export const metadata: Metadata = {
+  title: {
+    default: 'polyclock | talhayut',
+    template: '%s | tal hayut'
+  },
+  metadataBase: siteURL,
+  description: `3D diglog clock`,
+  icons: [
+    {
+      rel: 'apple-touch-icon',
+      url: '/apple-touch-icon.png'
+    }
+  ],
+  manifest: '/manifest.webmanifest',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'polyclock',
+    creator: 'talhayut',
+    siteId: 'polyclock'
+  }
+}
+
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <html lang="en">
+      <body className={inter.variable}>
+        <Providers>
+          {children}
+          {isDev && <GridDebugger />}
+          <AppHooks />
+        </Providers>
+      </body>
+    </html>
+  )
+}
+
+export default RootLayout
