@@ -49,7 +49,6 @@ export default function DigitModel(props) {
 
   const resets = {
     '0': [
-      { ref: mid, axis: 'x', negative: true },
       { ref: top_left, axis: 'y', negative: true },
       { ref: bottom_left, axis: 'y', negative: true }
     ],
