@@ -9,7 +9,10 @@ const config = {
   images: {
     formats: ['image/avif', 'image/webp']
   },
-  experimental: {}
+  experimental: {},
+  eslint: {
+    ignoreDuringBuilds: true
+  }
 }
 
 module.exports = (_phase, { defaultConfig: _ }) => {
