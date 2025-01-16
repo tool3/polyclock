@@ -28,9 +28,9 @@ export default function CanvasWithModel({
         max: 1
       },
       intensity: {
-        value: 0.3,
+        value: 1.5,
         min: 0,
-        max: 1
+        max: 5
       }
     })
   const { background } = useControls({ background: '#241f1b' })

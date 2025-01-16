@@ -48,10 +48,10 @@ export default function Clock() {
     return () => clearInterval(interval)
   }, [])
 
-  const { color, intensity } = useControls({
+  const { color, intensity } = useControls('Digits', {
     color: '#ff4f00',
     intensity: {
-      value: 1.5,
+      value: 2.0,
       min: 0.1,
       max: 5
     }
