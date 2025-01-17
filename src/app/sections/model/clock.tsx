@@ -21,6 +21,13 @@ export default function Clock() {
           ease: 'back.inOut(4)',
           duration
         })
+        if (ref.current?.children) {
+          const child = ref.current.children[1]
+          gsap.to(child.material, {
+            emissiveIntensity: intensity,
+            duration
+          })
+        }
       })
     }
 
@@ -32,6 +39,13 @@ export default function Clock() {
           ease: 'back.inOut(4)',
           duration
         })
+        if (ref.current?.children) {
+          const child = ref.current.children[1]
+          gsap.to(child.material, {
+            emissiveIntensity: 0.5,
+            duration
+          })
+        }
       })
     }
   }, [])
