@@ -10,33 +10,42 @@ import Dot from './dot'
 
 export default function Clock() {
   const [time, setTime] = useState({ hours: '', minutes: '', seconds: '' })
-
   const { color, intensity } = useControls('Digits', {
     color: '#ff4f00',
     intensity: {
       value: 2.0,
-      min: 0.1,
-      max: 5
+      min: 0,
+      max: 10
     }
   })
 
+  const animateDigit = useCallback(
+    (
+      target: any,
+      prop: any,
+      value: any,
+      options = { ease: 'back.inOut(4)' }
+    ) => {
+      const duration = 0.2
+      gsap.to(target, {
+        [prop]: value,
+        duration,
+        ...options
+      })
+    },
+    []
+  )
+
   const to = useCallback(
     (directions: any[], reverses: any[]) => {
-      const duration = 0.2
       if (reverses?.length) {
         reverses?.forEach((item) => {
           const { ref, axis } = item
-          gsap.to(ref.current.rotation, {
-            [axis]: 0,
-            ease: 'back.inOut(4)',
-            duration
-          })
+          animateDigit(ref.current.rotation, axis, 0)
           if (ref.current?.children) {
-            const child = ref.current.children[1]
-            gsap.to(child.material, {
-              emissiveIntensity: intensity,
-              duration
-            })
+            const [, child] = ref.current.children
+            const target = child.material
+            animateDigit(target, 'emissiveIntensity', intensity)
           }
         })
       }
@@ -44,27 +53,22 @@ export default function Clock() {
       if (directions?.length) {
         directions?.forEach((item) => {
           const { ref, axis, negative } = item
-          gsap.to(ref.current.rotation, {
-            [axis]: negative ? -Math.PI / 2 : Math.PI / 2,
-            ease: 'back.inOut(4)',
-            duration
-          })
-          if (ref.current?.children) {
-            const child = ref.current.children[1]
+          const target = ref.current.rotation
+          const value = negative ? -Math.PI / 2 : Math.PI / 2
+          animateDigit(target, axis, value)
 
-            gsap.to(child.material, {
-              emissiveIntensity: 0.3,
-              duration
-            })
+          if (ref.current?.children) {
+            const [, child] = ref.current.children
+            animateDigit(child.material, 'emissiveIntensity', 0.1)
           }
         })
       }
     },
-    [intensity]
+    [intensity, animateDigit]
   )
 
   useEffect(() => {
-    const MINUTE_MS = 4
+    const MINUTE_MS = 200
     const interval = setInterval(() => {
       const currentTime = new Date()
       const hours = currentTime.getHours().toString().padStart(2, '0')

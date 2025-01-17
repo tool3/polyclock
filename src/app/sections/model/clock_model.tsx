@@ -88,6 +88,12 @@ export default function DigitModel(props) {
     }
   }, [state, max])
 
+  const lightColorProps = {
+    emissive: color,
+    emissiveIntensity: intensity,
+    toneMapped: false
+  }
+
   return (
     <group {...props} dispose={null}>
       <group
@@ -103,10 +109,7 @@ export default function DigitModel(props) {
           material={materials.dark}
         />
         <mesh castShadow receiveShadow geometry={nodes.Circle_1.geometry}>
-          <meshStandardMaterial
-            emissive={color}
-            emissiveIntensity={intensity}
-          />
+          <meshStandardMaterial {...lightColorProps} />
         </mesh>
       </group>
       <group ref={mid} position={[0, 8.3, 0]} scale={0.94}>
@@ -117,10 +120,7 @@ export default function DigitModel(props) {
           material={materials.dark}
         />
         <mesh castShadow receiveShadow geometry={nodes.Circle_1.geometry}>
-          <meshStandardMaterial
-            emissive={color}
-            emissiveIntensity={intensity}
-          />
+          <meshStandardMaterial {...lightColorProps} />
         </mesh>
       </group>
       <group
@@ -136,10 +136,7 @@ export default function DigitModel(props) {
           material={materials.dark}
         />
         <mesh castShadow receiveShadow geometry={nodes.Circle_1.geometry}>
-          <meshStandardMaterial
-            emissive={color}
-            emissiveIntensity={intensity}
-          />
+          <meshStandardMaterial {...lightColorProps} />
         </mesh>
       </group>
       <group
@@ -155,10 +152,7 @@ export default function DigitModel(props) {
           material={materials.dark}
         />
         <mesh castShadow receiveShadow geometry={nodes.Circle_1.geometry}>
-          <meshStandardMaterial
-            emissive={color}
-            emissiveIntensity={intensity}
-          />
+          <meshStandardMaterial {...lightColorProps} />
         </mesh>
       </group>
       <group
@@ -174,10 +168,7 @@ export default function DigitModel(props) {
           material={materials.dark}
         />
         <mesh castShadow receiveShadow geometry={nodes.Circle_1.geometry}>
-          <meshStandardMaterial
-            emissive={color}
-            emissiveIntensity={intensity}
-          />
+          <meshStandardMaterial {...lightColorProps} />
         </mesh>
       </group>
       <group
@@ -193,10 +184,7 @@ export default function DigitModel(props) {
           material={materials.dark}
         />
         <mesh castShadow receiveShadow geometry={nodes.Circle_1.geometry}>
-          <meshStandardMaterial
-            emissive={color}
-            emissiveIntensity={intensity}
-          />
+          <meshStandardMaterial {...lightColorProps} />
         </mesh>
       </group>
       <group
@@ -212,10 +200,7 @@ export default function DigitModel(props) {
           material={materials.dark}
         />
         <mesh castShadow receiveShadow geometry={nodes.Circle_1.geometry}>
-          <meshStandardMaterial
-            emissive={color}
-            emissiveIntensity={intensity}
-          />
+          <meshStandardMaterial {...lightColorProps} />
         </mesh>
       </group>
     </group>

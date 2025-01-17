@@ -1,8 +1,10 @@
+/* eslint-disable react/no-unknown-property */
 import { Loader, OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Bloom, EffectComposer } from '@react-three/postprocessing'
-import { Leva, useControls } from 'leva'
+import { button, Leva, useControls } from 'leva'
 import { ReactNode, Suspense, useRef, useState } from 'react'
+
 import Debug from '../debug/debug'
 
 export default function CanvasWithModel({
@@ -14,26 +16,29 @@ export default function CanvasWithModel({
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [active, setActive] = useState(false)
+
   const { enabled, luminanceThreshold, luminanceSmoothing, intensity } =
     useControls('Bloom', {
       enabled: true,
       luminanceThreshold: {
-        value: 0.3,
+        value: 1.0,
         min: 0,
         max: 1
       },
       luminanceSmoothing: {
-        value: 0.3,
+        value: 1.0,
         min: 0,
         max: 1
       },
       intensity: {
-        value: 1.5,
+        value: 1.0,
         min: 0,
-        max: 5
+        max: 10
       }
     })
-  const { background } = useControls({ background: '#241f1b' })
+  const { background } = useControls({
+    background: '#241f1b'
+  })
 
   return (
     <>
@@ -57,15 +62,7 @@ export default function CanvasWithModel({
         style={style}
       >
         <color attach="background" args={[background]} />
-        <Suspense fallback={<Loader />}>
-          <Suspense fallback={null}>{children}</Suspense>
-          <OrbitControls
-            makeDefault
-            minZoom={10}
-            maxZoom={100}
-            target={[0, 0, 0]}
-          />
-        </Suspense>
+        <Wrapper>{children}</Wrapper>
         {enabled ? (
           <EffectComposer>
             <Bloom
@@ -73,10 +70,28 @@ export default function CanvasWithModel({
               luminanceThreshold={luminanceThreshold}
               luminanceSmoothing={luminanceSmoothing}
               height={1024}
+              width={1024}
             />
           </EffectComposer>
         ) : null}
       </Canvas>
     </>
+  )
+}
+
+function Wrapper({ children }) {
+  const target = useRef() as any
+
+  useControls({
+    ['reset camera']: button(() => {
+      target.current.reset()
+    })
+  })
+
+  return (
+    <Suspense fallback={<Loader />}>
+      <Suspense fallback={null}>{children}</Suspense>
+      <OrbitControls ref={target} makeDefault minZoom={10} maxZoom={100} />
+    </Suspense>
   )
 }
