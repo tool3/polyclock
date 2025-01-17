@@ -2,11 +2,11 @@
 
 import { Center } from '@react-three/drei'
 import gsap from 'gsap'
+import { useControls } from 'leva'
 import { useCallback, useEffect, useState } from 'react'
 
 import DigitModel from './clock_model'
 import Dot from './dot'
-import { useControls } from 'leva'
 
 export default function Clock() {
   const [time, setTime] = useState({ hours: '', minutes: '', seconds: '' })
@@ -16,8 +16,9 @@ export default function Clock() {
     if (reverses?.length) {
       reverses?.forEach((item) => {
         const { ref, axis } = item
-        gsap.to(ref.current.rotation, {
+        gsap.to(ref.current[animate], {
           [axis]: 0,
+          ease: 'back.inOut(4)',
           duration
         })
       })
@@ -26,8 +27,9 @@ export default function Clock() {
     if (directions?.length) {
       directions?.forEach((item) => {
         const { ref, axis, negative } = item
-        gsap.to(ref.current.rotation, {
+        gsap.to(ref.current[animate], {
           [axis]: negative ? -Math.PI / 2 : Math.PI / 2,
+          ease: 'back.inOut(4)',
           duration
         })
       })
@@ -57,32 +59,44 @@ export default function Clock() {
     }
   })
 
+  const { animate } = useControls({
+    animate: {
+      value: 'rotation',
+      options: {
+        rotation: 'rotation',
+        color: 'color'
+      }
+    }
+  })
+
   const [first, second] = time.hours
   const [third, fourth] = time.minutes
   const [fifth, sixth] = time.seconds
+
+  const digitProps = {
+    animate,
+    color,
+    intensity,
+    to,
+    scale: 0.5
+  }
 
   return (
     <Center>
       <group>
         <DigitModel
+          {...digitProps}
           state={first}
-          color={color}
-          intensity={intensity}
-          to={to}
-          scale={0.5}
           position={[-5, -5, 0]}
           max={'2'}
         />
         <DigitModel
+          {...digitProps}
           state={second}
-          color={color}
-          intensity={intensity}
-          to={to}
-          scale={0.5}
           position={[0, -5, 0]}
           max={'3'}
         />
-        <group position={[3, 0, .45]}>
+        <group position={[3, 0, 0.45]}>
           <Dot
             color={color}
             intensity={intensity}
@@ -99,24 +113,19 @@ export default function Clock() {
       </group>
       <group position={[1, 0, 0]}>
         <DigitModel
+          {...digitProps}
           state={third}
-          color={color}
-          intensity={intensity}
-          to={to}
-          scale={0.5}
           position={[5, -5, 0]}
           max={'5'}
         />
         <DigitModel
+          {...digitProps}
           state={fourth}
-          color={color}
-          intensity={intensity}
-          to={to}
           scale={0.5}
           position={[10, -5, 0]}
           max={'9'}
         />
-        <group position={[3, 0, .45]}>
+        <group position={[3, 0, 0.45]}>
           <Dot
             color={color}
             intensity={intensity}
@@ -133,20 +142,14 @@ export default function Clock() {
       </group>
       <group position={[2, 0, 0]}>
         <DigitModel
+          {...digitProps}
           state={fifth}
-          color={color}
-          intensity={intensity}
-          to={to}
-          scale={0.5}
           position={[15, -5, 0]}
           max={'5'}
         />
         <DigitModel
+          {...digitProps}
           state={sixth}
-          color={color}
-          intensity={intensity}
-          to={to}
-          scale={0.5}
           position={[20, -5, 0]}
           max={'9'}
         />

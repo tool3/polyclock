@@ -80,16 +80,14 @@ export default function DigitModel(props) {
   }
 
   useLayoutEffect(() => {
-    if (state) {
-      const next = state === '0' ? '9' : state - 1
-      if (state === '0' && max !== undefined) {
-        to(animations['0'], animations[max])
-      } else {
-        to(animations[state], resets[next])
-      }
+    const next = state === '0' ? '9' : state - 1
+    if (state === '0' && max !== undefined) {
+      to(animations['0'], animations[max])
+    } else {
+      to(animations[state], resets[next])
     }
   }, [state, max])
-  materials.dark.color.set('#ffffff')
+
   return (
     <group {...props} dispose={null}>
       <group
