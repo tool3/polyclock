@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
-import { OrbitControls } from '@react-three/drei'
+import { OrbitControls, Stats } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { Bloom, EffectComposer } from '@react-three/postprocessing'
+import { Bloom, EffectComposer, Noise } from '@react-three/postprocessing'
 import { button, Leva, useControls } from 'leva'
 import { ReactNode, Suspense, useRef, useState } from 'react'
 
@@ -19,31 +19,37 @@ export default function CanvasWithModel({
   const [active, setActive] = useState(false)
 
   const { enabled, luminanceThreshold, luminanceSmoothing, intensity } =
-    useControls('Bloom', {
-      enabled: true,
-      luminanceThreshold: {
-        value: 1.0,
-        min: 0,
-        max: 1
+    useControls(
+      'Bloom',
+      {
+        enabled: true,
+        luminanceThreshold: {
+          value: 1.0,
+          min: 0,
+          max: 1
+        },
+        luminanceSmoothing: {
+          value: 1.0,
+          min: 0,
+          max: 1
+        },
+        intensity: {
+          value: 5.0,
+          min: 0,
+          max: 10
+        }
       },
-      luminanceSmoothing: {
-        value: 1.0,
-        min: 0,
-        max: 1
-      },
-      intensity: {
-        value: 5.0,
-        min: 0,
-        max: 10
-      }
-    })
-  const { background } = useControls({
+      { order: 1 }
+    )
+  const { background, fps } = useControls({
+    fps: false,
     background: '#454545'
   })
 
   return (
     <>
       <Leva collapsed hidden={!active} />
+      {fps ? <Stats /> : null}
       <Debug set={setActive} />
       <Canvas
         ref={canvasRef}
@@ -73,6 +79,7 @@ export default function CanvasWithModel({
               height={1024}
               width={1024}
             />
+            <Noise opacity={0.05} />
           </EffectComposer>
         ) : null}
       </Canvas>
