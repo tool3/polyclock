@@ -1,11 +1,12 @@
 /* eslint-disable react/no-unknown-property */
-import { Loader, OrbitControls } from '@react-three/drei'
+import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Bloom, EffectComposer } from '@react-three/postprocessing'
 import { button, Leva, useControls } from 'leva'
 import { ReactNode, Suspense, useRef, useState } from 'react'
 
 import Debug from '../debug/debug'
+import Loader from '../loader/loader'
 
 export default function CanvasWithModel({
   style,

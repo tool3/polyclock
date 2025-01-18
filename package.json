@@ -1,8 +1,8 @@
 {
-  "name": "next-typescript",
+  "name": "polyclock",
   "version": "1.0.0",
-  "description": "A minimalist boilerplate — Next.js with TypeScript.",
-  "repository": "https://github.com/basementstudio/next-typescript",
+  "description": "7 segment display mechnical clock",
+  "repository": "https://github.com/tool3/polyclock",
   "author": "talhayut",
   "private": true,
   "scripts": {

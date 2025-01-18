@@ -5,20 +5,13 @@ import gsap from 'gsap'
 import React, { useEffect } from 'react'
 
 import { useAppStore } from '~/context/use-app-store'
-import {
-  basementLog,
-  gaTrackingId,
-  isClient,
-  isDev,
-  isProd
-} from '~/lib/constants'
+import { basementLog, gaTrackingId, isClient, isDev } from '~/lib/constants'
 import { GAScripts, useAppGA } from '~/lib/ga'
 
 gsap.registerPlugin(useGSAP)
 
 export const AppHooks = () => {
-  // TODO delete this basement log if not a basement project.
-  if (isProd && isClient) {
+  if (isClient) {
     // eslint-disable-next-line no-console
     console.log(basementLog)
   }

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: '%s | tal hayut'
   },
   metadataBase: siteURL,
-  description: `3D diglog clock`,
+  description: `7 segment display mechanical clock made with threejs`,
   icons: [
     {
       rel: 'apple-touch-icon',

@@ -21,6 +21,11 @@
   src: url('../../public/fonts/thunder/Thunder-BlackHC.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: SevenSeg;
+  src: url('../../public//fonts/Seven\ Segment.ttf') format('truetype');
+}
+
 :root {
   // Typography
   --font-system: -apple-system, blinkmacsystemfont, segoe ui, roboto, oxygen,
