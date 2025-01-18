@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import { OrbitControls, Stats } from '@react-three/drei'
+import { Environment, OrbitControls, Stats } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Bloom, EffectComposer, Noise } from '@react-three/postprocessing'
 import { button, Leva, useControls } from 'leva'
@@ -34,7 +34,7 @@ export default function CanvasWithModel({
           max: 1
         },
         intensity: {
-          value: 5.0,
+          value: 0.5,
           min: 0,
           max: 10
         }
@@ -70,6 +70,10 @@ export default function CanvasWithModel({
       >
         <color attach="background" args={[background]} />
         <Wrapper>{children}</Wrapper>
+        <Environment
+          files={'/textures/environments/studio_small_03_1k.hdr'}
+          environmentIntensity={0.3}
+        />
         {enabled ? (
           <EffectComposer>
             <Bloom

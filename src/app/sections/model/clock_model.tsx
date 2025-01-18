@@ -89,14 +89,15 @@ export default function DigitModel(props) {
   }, [state, max])
 
   const lightColorProps = {
+    color,
     emissive: color,
     emissiveIntensity: intensity,
     toneMapped: false
   }
   const baseProps = {
-    emissive: base,
-    metalness: 0.5,
-    roughness: 0.2,
+    color: base,
+    metalness: 1,
+    roughness: 0.5,
     toneMapped: false
   }
 

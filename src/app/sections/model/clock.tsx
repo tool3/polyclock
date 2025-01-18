@@ -9,12 +9,13 @@ import DigitModel from './clock_model'
 import Dot from './dot'
 
 export default function Clock() {
+  const [date, setDate] = useState(new Date())
   const [time, setTime] = useState({ hours: '', minutes: '', seconds: '' })
   const { color, base, intensity } = useControls('Digits', {
     base: '#1e1e1e',
     color: '#ff4f00',
     intensity: {
-      value: 2.5,
+      value: 3.5,
       min: 0,
       max: 10
     }
@@ -70,17 +71,14 @@ export default function Clock() {
   )
 
   useEffect(() => {
-    const MINUTE_MS = 200
-    const interval = setInterval(() => {
-      const currentTime = new Date()
-      const hours = currentTime.getHours().toString().padStart(2, '0')
-      const minutes = currentTime.getMinutes().toString().padStart(2, '0')
-      const seconds = currentTime.getSeconds().toString().padStart(2, '0')
-      setTime({ hours, minutes, seconds })
-    }, MINUTE_MS)
-
-    return () => clearInterval(interval)
-  }, [])
+    // const MINUTE_MS = 200
+    const currentTime = new Date()
+    const hours = currentTime.getHours().toString().padStart(2, '0')
+    const minutes = currentTime.getMinutes().toString().padStart(2, '0')
+    const seconds = currentTime.getSeconds().toString().padStart(2, '0')
+    setTime({ hours, minutes, seconds })
+    setDate(currentTime)
+  }, [date])
 
   const [first, second] = time.hours
   const [third, fourth] = time.minutes
@@ -91,6 +89,13 @@ export default function Clock() {
     base,
     intensity,
     to,
+    scale: 0.5
+  }
+
+  const dotProps = {
+    color,
+    base,
+    intensity,
     scale: 0.5
   }
 
@@ -110,18 +115,8 @@ export default function Clock() {
           max={'3'}
         />
         <group position={[3, 0, 0.45]}>
-          <Dot
-            color={color}
-            intensity={intensity}
-            position={[0, 1, 0]}
-            scale={0.5}
-          />
-          <Dot
-            color={color}
-            intensity={intensity}
-            position={[0, -2.5, 0]}
-            scale={0.5}
-          />
+          <Dot {...dotProps} position={[0, 1, 0]} />
+          <Dot {...dotProps} position={[0, -2.5, 0]} />
         </group>
       </group>
       <group position={[1, 0, 0]}>
@@ -139,18 +134,8 @@ export default function Clock() {
           max={'9'}
         />
         <group position={[3, 0, 0.45]}>
-          <Dot
-            color={color}
-            intensity={intensity}
-            position={[10, 1, 0]}
-            scale={0.5}
-          />
-          <Dot
-            color={color}
-            intensity={intensity}
-            position={[10, -2.5, 0]}
-            scale={0.5}
-          />
+          <Dot {...dotProps} position={[10, 1, 0]} />
+          <Dot {...dotProps} position={[10, -2.5, 0]} />
         </group>
       </group>
       <group position={[2, 0, 0]}>

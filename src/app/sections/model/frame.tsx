@@ -4,7 +4,7 @@ import { useGLTF } from '@react-three/drei'
 export default function Frame(props) {
   const { nodes } = useGLTF('/models/rods.glb') as any
   return (
-    <group {...props} dispose={null} position={[0, -4.5, -0.4]} scale={0.8}>
+    <group {...props} dispose={null} position={[0, -4.5, -0.4]} scale={0.5}>
       <mesh
         castShadow
         receiveShadow
