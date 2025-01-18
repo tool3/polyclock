@@ -14,7 +14,7 @@ export default function Clock() {
     base: '#1e1e1e',
     color: '#ff4f00',
     intensity: {
-      value: 4.1,
+      value: 2.5,
       min: 0,
       max: 10
     }
