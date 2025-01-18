@@ -1,10 +1,15 @@
 /* eslint-disable react/no-unknown-property */
 import { useGLTF } from '@react-three/drei'
+import { useControls } from 'leva'
 
-export default function Wall({ baseProps: baseRawProps, last, ...props }) {
+export default function Wall({ last, ...props }) {
   const { nodes } = useGLTF('/models/wall.glb') as any
 
-  const baseProps = { ...baseRawProps, roughness: 1 }
+  const { wallColor } = useControls({
+    wallColor: '#1e1e1e'
+  })
+
+  const baseProps = { color: wallColor, roughness: 0.5, metalness: 1 }
 
   return (
     <group

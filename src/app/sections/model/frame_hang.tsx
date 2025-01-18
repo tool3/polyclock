@@ -1,12 +1,17 @@
 /* eslint-disable react/no-unknown-property */
 import { useGLTF } from '@react-three/drei'
+import { useControls } from 'leva'
 
 export default function FrameHang(props) {
   const { nodes } = useGLTF('/models/frame_hang.glb') as any
-  const { color, metalness, roughness } = props
+  const { metalness, roughness } = props
+
+  const { frameColor } = useControls({
+    frameColor: '#1e1e1e'
+  })
 
   const baseProps = {
-    color,
+    color: frameColor,
     metalness,
     roughness
   }
