@@ -1,11 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unknown-property */
 import { useGLTF } from '@react-three/drei'
+import { useControls } from 'leva'
 import { createRef, useLayoutEffect } from 'react'
+
+import Frame from './frame_hang'
+import Wall from './wall'
 
 export default function DigitModel(props) {
   const { nodes } = useGLTF('/models/clock.glb') as any
-  const { to, state, max, color, base, intensity } = props
+  const { to, state, max, color, base, intensity, last } = props
 
   const [bottom, mid, bottom_left, bottom_right, top, top_right, top_left] =
     Array.from({ length: 7 }, () => createRef()) as any[]
@@ -87,6 +91,8 @@ export default function DigitModel(props) {
       to(animations[state], resets[next])
     }
   }, [state, max])
+
+  const { frame } = useControls({ frame: true })
 
   const lightColorProps = {
     color,
@@ -189,6 +195,10 @@ export default function DigitModel(props) {
           <meshStandardMaterial {...lightColorProps} />
         </mesh>
       </group>
+      {frame ? <Frame {...baseProps} /> : null}
+      {frame ? (
+        <Wall lightProps={lightColorProps} baseProps={baseProps} last={last} />
+      ) : null}
     </group>
   )
 }

@@ -71,7 +71,6 @@ export default function Clock() {
   )
 
   useEffect(() => {
-    // const MINUTE_MS = 200
     const currentTime = new Date()
     const hours = currentTime.getHours().toString().padStart(2, '0')
     const minutes = currentTime.getMinutes().toString().padStart(2, '0')
@@ -150,6 +149,7 @@ export default function Clock() {
           state={sixth}
           position={[20, -5, 0]}
           max={'9'}
+          last
         />
       </group>
     </Center>
