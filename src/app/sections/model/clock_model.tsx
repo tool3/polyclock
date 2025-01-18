@@ -4,8 +4,8 @@ import { useGLTF } from '@react-three/drei'
 import { createRef, useLayoutEffect } from 'react'
 
 export default function DigitModel(props) {
-  const { nodes, materials } = useGLTF('/models/clock.glb') as any
-  const { to, state, max, color, intensity } = props
+  const { nodes } = useGLTF('/models/clock.glb') as any
+  const { to, state, max, color, base, intensity } = props
 
   const [bottom, mid, bottom_left, bottom_right, top, top_right, top_left] =
     Array.from({ length: 7 }, () => createRef()) as any[]
@@ -93,6 +93,12 @@ export default function DigitModel(props) {
     emissiveIntensity: intensity,
     toneMapped: false
   }
+  const baseProps = {
+    emissive: base,
+    metalness: 0.5,
+    roughness: 0.2,
+    toneMapped: false
+  }
 
   return (
     <group {...props} dispose={null}>
@@ -102,23 +108,17 @@ export default function DigitModel(props) {
         rotation={[0, 0, Math.PI]}
         scale={0.94}
       >
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Circle.geometry}
-          material={materials.dark}
-        />
+        <mesh castShadow receiveShadow geometry={nodes.Circle.geometry}>
+          <meshStandardMaterial {...baseProps} />
+        </mesh>
         <mesh castShadow receiveShadow geometry={nodes.Circle_1.geometry}>
           <meshStandardMaterial {...lightColorProps} />
         </mesh>
       </group>
       <group ref={mid} position={[0, 8.3, 0]} scale={0.94}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Circle.geometry}
-          material={materials.dark}
-        />
+        <mesh castShadow receiveShadow geometry={nodes.Circle.geometry}>
+          <meshStandardMaterial {...baseProps} />
+        </mesh>
         <mesh castShadow receiveShadow geometry={nodes.Circle_1.geometry}>
           <meshStandardMaterial {...lightColorProps} />
         </mesh>
@@ -129,12 +129,9 @@ export default function DigitModel(props) {
         rotation={[0, 0, Math.PI / 2]}
         scale={0.94}
       >
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Circle.geometry}
-          material={materials.dark}
-        />
+        <mesh castShadow receiveShadow geometry={nodes.Circle.geometry}>
+          <meshStandardMaterial {...baseProps} />
+        </mesh>
         <mesh castShadow receiveShadow geometry={nodes.Circle_1.geometry}>
           <meshStandardMaterial {...lightColorProps} />
         </mesh>
@@ -145,12 +142,9 @@ export default function DigitModel(props) {
         rotation={[0, 0, -Math.PI / 2]}
         scale={0.94}
       >
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Circle.geometry}
-          material={materials.dark}
-        />
+        <mesh castShadow receiveShadow geometry={nodes.Circle.geometry}>
+          <meshStandardMaterial {...baseProps} />
+        </mesh>
         <mesh castShadow receiveShadow geometry={nodes.Circle_1.geometry}>
           <meshStandardMaterial {...lightColorProps} />
         </mesh>
@@ -161,12 +155,9 @@ export default function DigitModel(props) {
         rotation={[0, 0, -Math.PI]}
         scale={0.94}
       >
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Circle.geometry}
-          material={materials.dark}
-        />
+        <mesh castShadow receiveShadow geometry={nodes.Circle.geometry}>
+          <meshStandardMaterial {...baseProps} />
+        </mesh>
         <mesh castShadow receiveShadow geometry={nodes.Circle_1.geometry}>
           <meshStandardMaterial {...lightColorProps} />
         </mesh>
@@ -177,12 +168,9 @@ export default function DigitModel(props) {
         rotation={[0, 0, -Math.PI / 2]}
         scale={0.94}
       >
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Circle.geometry}
-          material={materials.dark}
-        />
+        <mesh castShadow receiveShadow geometry={nodes.Circle.geometry}>
+          <meshStandardMaterial {...baseProps} />
+        </mesh>
         <mesh castShadow receiveShadow geometry={nodes.Circle_1.geometry}>
           <meshStandardMaterial {...lightColorProps} />
         </mesh>
@@ -193,12 +181,9 @@ export default function DigitModel(props) {
         rotation={[0, 0, Math.PI / 2]}
         scale={0.94}
       >
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Circle.geometry}
-          material={materials.dark}
-        />
+        <mesh castShadow receiveShadow geometry={nodes.Circle.geometry}>
+          <meshStandardMaterial {...baseProps} />
+        </mesh>
         <mesh castShadow receiveShadow geometry={nodes.Circle_1.geometry}>
           <meshStandardMaterial {...lightColorProps} />
         </mesh>

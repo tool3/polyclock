@@ -10,10 +10,11 @@ import Dot from './dot'
 
 export default function Clock() {
   const [time, setTime] = useState({ hours: '', minutes: '', seconds: '' })
-  const { color, intensity } = useControls('Digits', {
+  const { color, base, intensity } = useControls('Digits', {
+    base: '#1e1e1e',
     color: '#ff4f00',
     intensity: {
-      value: 2.0,
+      value: 4.1,
       min: 0,
       max: 10
     }
@@ -24,12 +25,10 @@ export default function Clock() {
       target: any,
       prop: any,
       value: any,
-      options = { ease: 'back.inOut(4)' }
+      options = { ease: 'back.inOut(4)', duration: 0.2 }
     ) => {
-      const duration = 0.2
       gsap.to(target, {
         [prop]: value,
-        duration,
         ...options
       })
     },
@@ -59,7 +58,10 @@ export default function Clock() {
 
           if (ref.current?.children) {
             const [, child] = ref.current.children
-            animateDigit(child.material, 'emissiveIntensity', 0.1)
+            animateDigit(child.material, 'emissiveIntensity', 0.3, {
+              duration: 0.5,
+              ease: 'power4.out'
+            })
           }
         })
       }
@@ -86,6 +88,7 @@ export default function Clock() {
 
   const digitProps = {
     color,
+    base,
     intensity,
     to,
     scale: 0.5
