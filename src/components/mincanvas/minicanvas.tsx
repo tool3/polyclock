@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 import { Environment, OrbitControls, Stats } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { Bloom, EffectComposer, Noise, Scanline } from '@react-three/postprocessing'
+import { Bloom, EffectComposer, Noise } from '@react-three/postprocessing'
 import { button, Leva, useControls } from 'leva'
 import { Perf } from 'r3f-perf'
 import { ReactNode, Suspense, useRef, useState } from 'react'
@@ -86,7 +86,6 @@ export default function CanvasWithModel({
               width={1024}
             />
             <Noise opacity={0.05} />
-            <Scanline opacity={0.1} />
           </EffectComposer>
         ) : null}
       </Canvas>
