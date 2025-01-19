@@ -6,7 +6,8 @@ import { useGLTF } from '@react-three/drei'
 import { useControls } from 'leva'
 import { createRef, useLayoutEffect } from 'react'
 
-import { default as Frame, default as FrameHang } from './frame_hang'
+import Frame from './frame';
+import FrameHang from './frame_hang';
 import Wall from './wall'
 
 export default function DigitModel(props) {
