@@ -10,7 +10,7 @@ export default function Frame(props) {
     metalness,
     roughness
   }
-  
+
   return (
     <group {...props} dispose={null}>
       <mesh

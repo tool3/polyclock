@@ -22,13 +22,13 @@ export default function Dot(props) {
   }
 
   useLayoutEffect(() => {
-    if (group) {
-      gsap.to(group.current.rotation, {
-        z: -Math.PI / 2,
-        ease: 'back.inOut(4)',
-        duration: 0.3
-      })
-    }
+    // if (group) {
+    //   gsap.to(group.current.rotation, {
+    //     z: -Math.PI / 2,
+    //     ease: 'back.inOut(4)',
+    //     duration: 0.3
+    //   })
+    // }
   }, [])
 
   return (

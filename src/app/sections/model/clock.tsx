@@ -114,8 +114,8 @@ export default function Clock() {
           max={'3'}
         />
         <group position={[3, 0, 0.45]}>
-          <Dot {...dotProps} position={[0, 1, 0]} />
-          <Dot {...dotProps} position={[0, -2.5, 0]} />
+          <Dot {...dotProps} position={[0, 1.6, 0]} />
+          <Dot {...dotProps} position={[0, -3.3, 0]} />
         </group>
       </group>
       <group position={[1, 0, 0]}>
@@ -133,8 +133,8 @@ export default function Clock() {
           max={'9'}
         />
         <group position={[3, 0, 0.45]}>
-          <Dot {...dotProps} position={[10, 1, 0]} />
-          <Dot {...dotProps} position={[10, -2.5, 0]} />
+          <Dot {...dotProps} position={[10, 1.6, 0]} />
+          <Dot {...dotProps} position={[10, -3.3, 0]} />
         </group>
       </group>
       <group position={[2, 0, 0]}>

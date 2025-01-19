@@ -7,6 +7,7 @@ import { ReactNode, Suspense, useRef, useState } from 'react'
 
 import Debug from '../debug/debug'
 import Loader from '../loader/loader'
+import { Perf } from 'r3f-perf'
 
 export default function CanvasWithModel({
   style,
@@ -69,6 +70,7 @@ export default function CanvasWithModel({
         style={style}
       >
         <color attach="background" args={[background]} />
+        {fps ? <Perf position="bottom-left" logsPerSecond={1} /> : null}
         <Wrapper>{children}</Wrapper>
         <Environment
           files={'/textures/environments/studio_small_03_1k.hdr'}

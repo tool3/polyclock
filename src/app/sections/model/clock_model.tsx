@@ -6,6 +6,7 @@ import { createRef, useLayoutEffect } from 'react'
 
 import Frame from './frame_hang'
 import Wall from './wall'
+import FrameHang from './frame_hang'
 
 export default function DigitModel(props) {
   const { nodes } = useGLTF('/models/clock.glb') as any
@@ -92,7 +93,9 @@ export default function DigitModel(props) {
     }
   }, [state, max])
 
-  const { frame } = useControls({ frame: true })
+  const { frame, wall } = useControls({ frame: true, wall: true })
+
+  const FrameModel = wall ? FrameHang : Frame;
 
   const lightColorProps = {
     color,
@@ -195,8 +198,8 @@ export default function DigitModel(props) {
           <meshStandardMaterial {...lightColorProps} />
         </mesh>
       </group>
-      {frame ? <Frame {...baseProps} /> : null}
-      {frame ? (
+      {frame ? <FrameModel {...baseProps} /> : null}
+      {wall ? (
         <Wall lightProps={lightColorProps} baseProps={baseProps} last={last} />
       ) : null}
     </group>
