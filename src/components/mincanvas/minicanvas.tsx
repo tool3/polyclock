@@ -1,18 +1,13 @@
 /* eslint-disable react/no-unknown-property */
 import { Environment, OrbitControls, Stats } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import {
-  Bloom,
-  EffectComposer,
-  Scanline,
-  Vignette
-} from '@react-three/postprocessing'
 import { button, Leva, useControls } from 'leva'
 import { Perf } from 'r3f-perf'
 import { ReactNode, Suspense, useRef, useState } from 'react'
 
 import Debug from '../debug/debug'
 import Loader from '../loader/loader'
+import Effects from './effects'
 
 export default function CanvasWithModel({
   style,
@@ -24,29 +19,6 @@ export default function CanvasWithModel({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [active, setActive] = useState(false)
 
-  const { enabled, luminanceThreshold, luminanceSmoothing, intensity } =
-    useControls(
-      'Bloom',
-      {
-        enabled: true,
-        luminanceThreshold: {
-          value: 1.0,
-          min: 0,
-          max: 1
-        },
-        luminanceSmoothing: {
-          value: 1.0,
-          min: 0,
-          max: 1
-        },
-        intensity: {
-          value: 1.5,
-          min: 0,
-          max: 10
-        }
-      },
-      { order: 1 }
-    )
   const { background, fps } = useControls({
     fps: false,
     background: '#454545'
@@ -82,19 +54,7 @@ export default function CanvasWithModel({
           files={'/textures/environments/studio_small_03_1k.hdr'}
           environmentIntensity={0.3}
         />
-        {enabled ? (
-          <EffectComposer stencilBuffer>
-            <Bloom
-              mipmapBlur
-              intensity={intensity}
-              luminanceThreshold={luminanceThreshold}
-              luminanceSmoothing={luminanceSmoothing}
-            />
-            {/* <Noise opacity={0.5} /> */}
-            <Scanline opacity={0.05} />
-            <Vignette darkness={0.5} />
-          </EffectComposer>
-        ) : null}
+        <Effects />
       </Canvas>
     </>
   )
@@ -111,7 +71,7 @@ function Wrapper({ children }) {
 
   return (
     <Suspense fallback={<Loader />}>
-      <Suspense fallback={null}>{children}</Suspense>
+      {children}
       <OrbitControls ref={target} makeDefault minZoom={10} maxZoom={100} />
     </Suspense>
   )

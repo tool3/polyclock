@@ -1,12 +1,13 @@
+'use client'
+
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unknown-property */
 import { useGLTF } from '@react-three/drei'
 import { useControls } from 'leva'
 import { createRef, useLayoutEffect } from 'react'
 
-import Frame from './frame_hang'
+import { default as Frame, default as FrameHang } from './frame_hang'
 import Wall from './wall'
-import FrameHang from './frame_hang'
 
 export default function DigitModel(props) {
   const { nodes } = useGLTF('/models/clock.glb') as any
@@ -95,7 +96,7 @@ export default function DigitModel(props) {
 
   const { frame, wall } = useControls({ frame: true, wall: true })
 
-  const FrameModel = wall ? FrameHang : Frame;
+  const FrameModel = wall ? FrameHang : Frame
 
   const lightColorProps = {
     color,
@@ -111,7 +112,10 @@ export default function DigitModel(props) {
   }
 
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+    >
       <group
         ref={bottom}
         position={[0, 1.3, 0]}

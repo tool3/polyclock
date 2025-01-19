@@ -35,7 +35,7 @@
     "react-fast-marquee": "1.6.5",
     "react-merge-refs": "^2.1.1",
     "three": "0.171.0",
-    "three-stdlib": "2.35.2",
+    "three-stdlib": "^2.35.7",
     "zod": "^3.23.4",
     "zustand": "^4.5.2"
   },
@@ -71,8 +71,7 @@
     "typescript": "^5.4.5"
   },
   "engines": {
-    "node": "18.x",
-    "yarn": "1.x"
+    "node": "22.x"
   },
   "browserslist": [
     ">0.2%",
