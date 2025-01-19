@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 import { Environment, OrbitControls, Stats } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { Bloom, EffectComposer, Scanline } from '@react-three/postprocessing'
+import { Bloom, EffectComposer, Noise, Scanline } from '@react-three/postprocessing'
 import { button, Leva, useControls } from 'leva'
 import { Perf } from 'r3f-perf'
 import { ReactNode, Suspense, useRef, useState } from 'react'
