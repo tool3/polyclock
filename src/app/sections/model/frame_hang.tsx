@@ -7,7 +7,7 @@ export default function FrameHang(props) {
   const { metalness, roughness } = props
 
   const { frameColor } = useControls({
-    frameColor: '#1e1e1e'
+    frameColor: '#000000'
   })
 
   const baseProps = {

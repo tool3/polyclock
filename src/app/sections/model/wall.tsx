@@ -15,7 +15,7 @@ export default function Wall({ last, ...props }) {
     <group
       {...props}
       scale={[0.75, 0.7, 0.8]}
-      position={[0, 2.5, 0]}
+      position={[0, 2.5, -0.3]}
       dispose={null}
     >
       <mesh castShadow receiveShadow geometry={nodes.wall.geometry}>

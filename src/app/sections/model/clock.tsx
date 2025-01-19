@@ -12,10 +12,10 @@ export default function Clock() {
   const [date, setDate] = useState(new Date())
   const [time, setTime] = useState({ hours: '', minutes: '', seconds: '' })
   const { color, base, intensity } = useControls('Digits', {
-    base: '#1e1e1e',
+    base: '#000000',
     color: '#ff4f00',
     intensity: {
-      value: 3.5,
+      value: 2.0,
       min: 0,
       max: 10
     }

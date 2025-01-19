@@ -1,10 +1,17 @@
 import { useLoader } from '@react-three/fiber'
-import { EffectComposer, Bloom, LUT, Scanline, Vignette } from '@react-three/postprocessing'
+import {
+    Bloom,
+    EffectComposer,
+    LUT,
+    Scanline,
+    Vignette
+} from '@react-three/postprocessing'
 import { useControls } from 'leva'
 import { LUTCubeLoader } from 'three-stdlib'
 
 export default function Effects() {
-  const { lut } = useControls({
+  const { lut, enabled: lutEnabled } = useControls('LUTs', {
+    enabled: true,
     lut: {
       value: '/textures/LUTs/Chemical-168.CUBE',
       options: {
@@ -16,7 +23,6 @@ export default function Effects() {
       }
     }
   })
-  const lutTexture = useLoader(LUTCubeLoader, lut)
 
   const { enabled, luminanceThreshold, luminanceSmoothing, intensity } =
     useControls(
@@ -41,18 +47,30 @@ export default function Effects() {
       },
       { order: 1 }
     )
+  const { enabled: scanLineEnabled } = useControls('Scanline', {
+    enabled: true
+  })
+  const { enabled: vignetteEnabled } = useControls('Vignette', {
+    enabled: true
+  })
 
-  return enabled ? (
+  const lutTexture = useLoader(LUTCubeLoader, lut)
+
+  return (
     <EffectComposer stencilBuffer>
-      <Bloom
-        mipmapBlur
-        intensity={intensity}
-        luminanceThreshold={luminanceThreshold}
-        luminanceSmoothing={luminanceSmoothing}
-      />
-      <Scanline opacity={0.05} />
-      <Vignette darkness={0.5} />
-      <LUT lut={lutTexture.texture} />
+      {lutEnabled ? <LUT lut={lutTexture.texture} /> : <></>}
+      {enabled ? (
+        <Bloom
+          mipmapBlur
+          intensity={intensity}
+          luminanceThreshold={luminanceThreshold}
+          luminanceSmoothing={luminanceSmoothing}
+        />
+      ) : (
+        <></>
+      )}
+      {scanLineEnabled ? <Scanline opacity={0.05} /> : <></>}
+      {vignetteEnabled ? <Vignette darkness={0.5} /> : <></>}
     </EffectComposer>
-  ) : null
+  )
 }

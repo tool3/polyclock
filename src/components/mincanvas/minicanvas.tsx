@@ -50,10 +50,7 @@ export default function CanvasWithModel({
         <color attach="background" args={[background]} />
         {fps ? <Perf position="bottom-left" logsPerSecond={1} /> : null}
         <Wrapper>{children}</Wrapper>
-        <Environment
-          files={'/textures/environments/studio_small_03_1k.hdr'}
-          environmentIntensity={0.3}
-        />
+        <Environment files={'/textures/environments/studio_small_03_1k.hdr'} />
         <Effects />
       </Canvas>
     </>
