@@ -9,7 +9,6 @@ import DigitModel from './clock_model'
 import Dot from './dot'
 
 export default function Clock() {
-  const [date, setDate] = useState(new Date())
   const [time, setTime] = useState({ hours: '', minutes: '', seconds: '' })
   const { color, base, intensity } = useControls('Digits', {
     base: '#000000',
@@ -77,10 +76,9 @@ export default function Clock() {
       const minutes = currentTime.getMinutes().toString().padStart(2, '0')
       const seconds = currentTime.getSeconds().toString().padStart(2, '0')
       setTime({ hours, minutes, seconds })
-      setDate(currentTime)
     }, 5)
     return () => clearInterval(interval)
-  }, [date])
+  }, [])
 
   const [first, second] = time.hours
   const [third, fourth] = time.minutes
