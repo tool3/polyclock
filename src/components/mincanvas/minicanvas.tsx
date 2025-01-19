@@ -1,13 +1,18 @@
 /* eslint-disable react/no-unknown-property */
 import { Environment, OrbitControls, Stats } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { Bloom, EffectComposer, Noise } from '@react-three/postprocessing'
+import {
+  Bloom,
+  EffectComposer,
+  Scanline,
+  Vignette
+} from '@react-three/postprocessing'
 import { button, Leva, useControls } from 'leva'
+import { Perf } from 'r3f-perf'
 import { ReactNode, Suspense, useRef, useState } from 'react'
 
 import Debug from '../debug/debug'
 import Loader from '../loader/loader'
-import { Perf } from 'r3f-perf'
 
 export default function CanvasWithModel({
   style,
@@ -85,7 +90,9 @@ export default function CanvasWithModel({
               height={1024}
               width={1024}
             />
-            <Noise opacity={0.05} />
+            {/* <Noise opacity={0.05} /> */}
+            <Scanline opacity={0.1} />
+            <Vignette darkness={0.6} offset={0.3} />
           </EffectComposer>
         ) : null}
       </Canvas>

@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import { useGLTF } from '@react-three/drei'
-import gsap from 'gsap'
-import { useLayoutEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 export default function Dot(props) {
   const { nodes } = useGLTF('/models/dot.glb') as any
@@ -21,15 +20,15 @@ export default function Dot(props) {
     toneMapped: false
   }
 
-  useLayoutEffect(() => {
-    // if (group) {
-    //   gsap.to(group.current.rotation, {
-    //     z: -Math.PI / 2,
-    //     ease: 'back.inOut(4)',
-    //     duration: 0.3
-    //   })
-    // }
-  }, [])
+  // useLayoutEffect(() => {
+  //   // if (group) {
+  //   //   gsap.to(group.current.rotation, {
+  //   //     z: -Math.PI / 2,
+  //   //     ease: 'back.inOut(4)',
+  //   //     duration: 0.3
+  //   //   })
+  //   // }
+  // }, [])
 
   return (
     <group
