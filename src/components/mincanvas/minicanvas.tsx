@@ -1,13 +1,20 @@
 /* eslint-disable react/no-unknown-property */
 import { Environment, OrbitControls, Stats } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { Bloom, EffectComposer, Noise } from '@react-three/postprocessing'
+import {
+  Bloom,
+  EffectComposer,
+  Noise,
+  Scanline,
+  Vignette
+} from '@react-three/postprocessing'
 import { button, Leva, useControls } from 'leva'
 import { Perf } from 'r3f-perf'
 import { ReactNode, Suspense, useRef, useState } from 'react'
 
 import Debug from '../debug/debug'
 import Loader from '../loader/loader'
+import Grading from './effects'
 
 export default function CanvasWithModel({
   style,
@@ -35,7 +42,7 @@ export default function CanvasWithModel({
           max: 1
         },
         intensity: {
-          value: 0.5,
+          value: 1.5,
           min: 0,
           max: 10
         }
@@ -53,6 +60,7 @@ export default function CanvasWithModel({
       {fps ? <Stats /> : null}
       <Debug set={setActive} />
       <Canvas
+        shadows
         ref={canvasRef}
         dpr={[1, 2]}
         gl={{
@@ -77,15 +85,16 @@ export default function CanvasWithModel({
           environmentIntensity={0.3}
         />
         {enabled ? (
-          <EffectComposer>
+          <EffectComposer stencilBuffer>
             <Bloom
+              mipmapBlur
               intensity={intensity}
               luminanceThreshold={luminanceThreshold}
               luminanceSmoothing={luminanceSmoothing}
-              height={1024}
-              width={1024}
             />
-            <Noise opacity={0.05} />
+            {/* <Noise opacity={0.5} /> */}
+            <Scanline opacity={0.05} />
+            <Vignette darkness={0.5} />
           </EffectComposer>
         ) : null}
       </Canvas>
