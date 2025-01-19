@@ -13,7 +13,7 @@ export default function Clock() {
   const [time, setTime] = useState({ hours: '', minutes: '', seconds: '' })
   const { color, base, intensity } = useControls('Digits', {
     base: '#000000',
-    color: '#ff4f00',
+    color: '#ff5f15',
     intensity: {
       value: 2.0,
       min: 0,
@@ -59,8 +59,8 @@ export default function Clock() {
 
           if (ref.current?.children) {
             const [, child] = ref.current.children
-            animateDigit(child.material, 'emissiveIntensity', 0.3, {
-              duration: 0.5,
+            animateDigit(child.material, 'emissiveIntensity', 0.1, {
+              duration: 0.6,
               ease: 'power4.out'
             })
           }
