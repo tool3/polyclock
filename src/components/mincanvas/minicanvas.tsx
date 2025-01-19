@@ -4,7 +4,6 @@ import { Canvas } from '@react-three/fiber'
 import {
   Bloom,
   EffectComposer,
-  Noise,
   Scanline,
   Vignette
 } from '@react-three/postprocessing'
@@ -14,7 +13,6 @@ import { ReactNode, Suspense, useRef, useState } from 'react'
 
 import Debug from '../debug/debug'
 import Loader from '../loader/loader'
-import Grading from './effects'
 
 export default function CanvasWithModel({
   style,
