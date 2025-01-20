@@ -76,7 +76,9 @@ html {
 }
 
 body {
-  background-color: var(--color-black);
+  // background-color: var(--color-black);
+  z-index: 0;
+  background: radial-gradient(#ff5f15, #1e1e1e);
   font-family: var(--font-body);
   transition: opacity var(--transition-quick);
 }

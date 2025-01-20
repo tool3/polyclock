@@ -73,7 +73,7 @@ export default function Effects() {
   const lutTexture = useLoader(LUTCubeLoader, lut)
 
   return (
-    <EffectComposer>
+    <EffectComposer multisampling={0}>
       {lutEnabled ? <LUT lut={lutTexture.texture} /> : <></>}
       {bloomEnabled ? (
         <Bloom
