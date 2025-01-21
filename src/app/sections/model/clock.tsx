@@ -67,7 +67,7 @@ export default function Clock() {
           if (ref.current?.children) {
             const [, child] = ref.current.children
             animateDigit(child.material, 'emissiveIntensity', 0.01, {
-              duration: 1,
+              duration: 0.8,
               ease: 'power1.out(4)'
             })
           }
