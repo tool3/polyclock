@@ -28,7 +28,7 @@ export default function Effects() {
       {
         lutEnabled: true,
         lut: {
-          value: '/textures/LUTs/Chemical-168.CUBE',
+          value: '/textures/LUTs/Filmic-1.CUBE',
           options: {
             filmic: '/textures/LUTs/Filmic-1.CUBE',
             bourbon: '/textures/LUTs/Bourbon-64.CUBE',
@@ -55,7 +55,7 @@ export default function Effects() {
           max: 1
         },
         intensity: {
-          value: 0.5,
+          value: 1.5,
           min: 0,
           max: 10
         }
@@ -90,11 +90,11 @@ export default function Effects() {
       { collapsed: true }
     )
   })
+
   const lutTexture = useLoader(LUTCubeLoader, lut)
 
   return (
     <EffectComposer multisampling={0} stencilBuffer>
-      {lutEnabled ? <LUT lut={lutTexture.texture} /> : <></>}
       {bloomEnabled ? (
         <Bloom
           mipmapBlur
@@ -115,6 +115,9 @@ export default function Effects() {
       ) : (
         <></>
       )}
+      {lutEnabled ? <LUT lut={lutTexture.texture} /> : <></>}
     </EffectComposer>
   )
 }
+
+useLoader.preload(LUTCubeLoader, '/textures/LUTs/Filmic-1.CUBE')

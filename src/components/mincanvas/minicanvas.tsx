@@ -47,7 +47,7 @@ export default function CanvasWithModel({
           position: [0, 0, 50],
           zoom: 20
         }}
-        gl={{ premultipliedAlpha: false }}
+        gl={{ premultipliedAlpha: false, powerPreference: 'high-performance' }}
         style={style}
       >
         <color attach="background" args={[background]} />
