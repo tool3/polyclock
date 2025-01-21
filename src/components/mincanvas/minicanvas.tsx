@@ -21,7 +21,16 @@ export default function CanvasWithModel({
 
   const { fps, background } = useControls({
     fps: false,
-    background: '#ff5f15'
+    background: {
+      value: '#ff5f15',
+      onEditEnd: (value) => {
+        const meta = document.querySelector('meta[name="theme-color"]')
+        if (meta) {
+          meta.setAttribute('content', value)
+        }
+        return value
+      }
+    }
   })
 
   const target = useRef() as any
