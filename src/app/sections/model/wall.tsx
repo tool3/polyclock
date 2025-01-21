@@ -6,10 +6,10 @@ export default function Wall({ last, ...props }) {
   const { nodes } = useGLTF('/models/wall.glb') as any
 
   const { wallColor } = useControls({
-    wallColor: '#1e1e1e'
+    wallColor: '#000000'
   })
 
-  const baseProps = { color: wallColor, roughness: 0.5, metalness: 1 }
+  const baseProps = { color: wallColor, roughness: 0.8 }
 
   return (
     <group

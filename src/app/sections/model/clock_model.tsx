@@ -6,8 +6,8 @@ import { useGLTF } from '@react-three/drei'
 import { useControls } from 'leva'
 import { createRef, useLayoutEffect } from 'react'
 
-import Frame from './frame';
-import FrameHang from './frame_hang';
+import Frame from './frame'
+import FrameHang from './frame_hang'
 import Wall from './wall'
 
 export default function DigitModel(props) {
@@ -108,15 +108,12 @@ export default function DigitModel(props) {
   const baseProps = {
     color: base,
     metalness: 1,
-    roughness: 0.5,
+    roughness: 0.6,
     toneMapped: false
   }
 
   return (
-    <group
-      {...props}
-      dispose={null}
-    >
+    <group {...props} dispose={null}>
       <group
         ref={bottom}
         position={[0, 1.3, 0]}

@@ -24,7 +24,8 @@ export default function FrameHang(props) {
         geometry={nodes.frame005.geometry}
         position={[3.498, 8.3, -0.393]}
         rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-        scale={[1, 0.355, 1]}>
+        scale={[1, 0.355, 1]}
+      >
         <meshStandardMaterial {...baseProps} />
       </mesh>
     </group>
