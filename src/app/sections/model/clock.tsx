@@ -45,8 +45,8 @@ export default function Clock() {
             const [, child] = ref.current.children
             const target = child.material
             animateDigit(target, 'emissiveIntensity', intensity, {
-              ease: 'power4.out',
-              duration: 0.5
+              ease: 'power4.out(4)',
+              duration: 0.3
             })
           }
         })
@@ -63,7 +63,7 @@ export default function Clock() {
             const [, child] = ref.current.children
             animateDigit(child.material, 'emissiveIntensity', 0.01, {
               duration: 1,
-              ease: 'power1.out'
+              ease: 'power1.out(4)'
             })
           }
         })
