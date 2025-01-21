@@ -7,6 +7,7 @@ import {
   Vignette
 } from '@react-three/postprocessing'
 import { folder, useControls } from 'leva'
+import { VignetteTechnique } from 'postprocessing'
 import { LUTCubeLoader } from 'three-stdlib'
 
 export default function Effects() {
@@ -18,7 +19,10 @@ export default function Effects() {
     luminanceSmoothing,
     luminanceThreshold,
     vignetteEnabled,
-    scanlineEnabled
+    vignetteStrength,
+    vignetteOffset,
+    scanlineEnabled,
+    scanlineStrength
   } = useControls('Post Processing', {
     LUTs: folder(
       {
@@ -26,6 +30,7 @@ export default function Effects() {
         lut: {
           value: '/textures/LUTs/Chemical-168.CUBE',
           options: {
+            filmic: '/textures/LUTs/Filmic-1.CUBE',
             bourbon: '/textures/LUTs/Bourbon-64.CUBE',
             chemical: '/textures/LUTs/Chemical-168.CUBE',
             clayton: '/textures/LUTs/Clayton-33.CUBE',
@@ -59,13 +64,28 @@ export default function Effects() {
     ),
     Scanline: folder(
       {
-        scanlineEnabled: true
+        scanlineEnabled: true,
+        scanlineStrength: {
+          value: 0.05,
+          min: 0,
+          max: 1
+        }
       },
       { collapsed: true }
     ),
     Vignette: folder(
       {
-        vignetteEnabled: true
+        vignetteEnabled: true,
+        vignetteStrength: {
+          value: 0.5,
+          min: 0,
+          max: 1
+        },
+        vignetteOffset: {
+          value: 0.5,
+          min: 0,
+          max: 1
+        }
       },
       { collapsed: true }
     )
@@ -73,7 +93,7 @@ export default function Effects() {
   const lutTexture = useLoader(LUTCubeLoader, lut)
 
   return (
-    <EffectComposer multisampling={0}>
+    <EffectComposer multisampling={0} stencilBuffer>
       {lutEnabled ? <LUT lut={lutTexture.texture} /> : <></>}
       {bloomEnabled ? (
         <Bloom
@@ -85,9 +105,16 @@ export default function Effects() {
       ) : (
         <></>
       )}
-      {scanlineEnabled ? <Scanline opacity={0.05} /> : <></>}
-      {vignetteEnabled ? <Vignette darkness={0.5} /> : <></>}
+      {scanlineEnabled ? <Scanline opacity={scanlineStrength} /> : <></>}
+      {vignetteEnabled ? (
+        <Vignette
+          offset={vignetteOffset}
+          darkness={vignetteStrength}
+          technique={VignetteTechnique.DEFAULT}
+        />
+      ) : (
+        <></>
+      )}
     </EffectComposer>
   )
-  return null
 }

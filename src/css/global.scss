@@ -32,6 +32,7 @@
     ubuntu, cantarell, fira sans, droid sans, helvetica neue, sans-serif;
 
   // Colors
+  --theme-color: #ff5f15;
   --inspect-color: #f00;
   --color-red: #f00;
   --color-black: #000;
@@ -39,8 +40,6 @@
   --color-gray: #0f0f0f;
   --color-gray-lighter: #262626;
   --color-shout-yellow: #ddfc23;
-  // --color-gradient: linear-gradient(to left, #00ff94, #ff00c7, #00ff94);
-  // --color-gradient: linear-gradient(to left, #00ff94, #ff00c7, #00ff94);
 
   /* Duration */
   --duration-slow: #{$duration * 1.5}s;
@@ -76,9 +75,8 @@ html {
 }
 
 body {
-  // background-color: var(--color-black);
+  position: relative;
   z-index: 0;
-  background: radial-gradient(#ff5f15, #1e1e1e);
   font-family: var(--font-body);
   transition: opacity var(--transition-quick);
 }

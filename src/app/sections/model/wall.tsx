@@ -18,20 +18,21 @@ export default function Wall({ last, ...props }) {
       position={[0, 2.5, -0.3]}
       dispose={null}
     >
-      <mesh castShadow receiveShadow geometry={nodes.wall.geometry}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.wall.geometry}
+        position={[0, 0, -0.2]}
+      >
         <meshStandardMaterial {...baseProps} />
       </mesh>
-
       {!last ? (
         <group>
-          <mesh castShadow receiveShadow geometry={nodes.frame007.geometry}>
-            <meshStandardMaterial {...baseProps} />
-          </mesh>
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.frame008.geometry}
-            position={[0, -7, 0]}
+            geometry={nodes.frame001.geometry}
+            position={[8.098, 15.3, -1.793]}
           >
             <meshStandardMaterial {...baseProps} />
           </mesh>
@@ -39,8 +40,39 @@ export default function Wall({ last, ...props }) {
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.frame009.geometry}
-            position={[0, -14, 0]}
+            geometry={nodes.frame002.geometry}
+            position={[8.098, 8.3, -1.793]}
+          >
+            <meshStandardMaterial {...baseProps} />
+          </mesh>
+
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.frame003.geometry}
+            position={[8.098, 1.3, -1.793]}
+          >
+            <meshStandardMaterial {...baseProps} />
+          </mesh>
+
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.frame004.geometry}
+            position={[8.098, 15.3, -0.444]}
+            rotation={[0, Math.PI / 2, 0]}
+            scale={[0.808, 1, 1]}
+          >
+            <meshStandardMaterial {...baseProps} />
+          </mesh>
+
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.frame010.geometry}
+            position={[8.098, 1.3, -0.444]}
+            rotation={[0, Math.PI / 2, 0]}
+            scale={[0.808, 1, 1]}
           >
             <meshStandardMaterial {...baseProps} />
           </mesh>

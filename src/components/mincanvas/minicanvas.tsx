@@ -19,10 +19,17 @@ export default function CanvasWithModel({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [active, setActive] = useState(false)
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { fps } = useControls({
+  const { fps, background } = useControls({
     fps: false,
-    background: '#454545'
+    background: '#ff5f15'
+  })
+
+  const target = useRef() as any
+
+  useControls({
+    ['reset camera']: button(() => {
+      target.current.reset()
+    })
   })
 
   return (
@@ -40,34 +47,21 @@ export default function CanvasWithModel({
           position: [0, 0, 50],
           zoom: 20
         }}
+        gl={{ premultipliedAlpha: false }}
         style={style}
       >
-        {/* <color attach="background" args={[background]} /> */}
+        <color attach="background" args={[background]} />
         {fps ? <Perf position="bottom-left" logsPerSecond={1} /> : null}
-        <Wrapper>{children}</Wrapper>
+
+        <Suspense fallback={<Loader />}>{children}</Suspense>
+        {children}
         <Environment
           files={'/textures/environments/studio_small_03_1k.hdr'}
-          environmentRotation={[0, 0, -Math.PI / 2]}
+          environmentRotation={[0, 0, Math.PI / 2]}
         />
         <Effects />
+        <OrbitControls ref={target} makeDefault minZoom={10} maxZoom={100} />
       </Canvas>
     </>
-  )
-}
-
-function Wrapper({ children }) {
-  const target = useRef() as any
-
-  useControls({
-    ['reset camera']: button(() => {
-      target.current.reset()
-    })
-  })
-
-  return (
-    <Suspense fallback={<Loader />}>
-      {children}
-      <OrbitControls ref={target} makeDefault minZoom={10} maxZoom={100} />
-    </Suspense>
   )
 }
