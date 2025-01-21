@@ -22,8 +22,10 @@
     "@react-three/postprocessing": "^2.16.5",
     "@tanstack/react-query": "^5.32.0",
     "clsx": "^2.1.1",
+    "file-loader": "^6.2.0",
     "gsap": "^3.12.5",
     "hls.js": "^1.5.8",
+    "howler": "^2.2.4",
     "just-debounce-it": "^3.2.0",
     "leva": "^0.9.34",
     "mousetrap": "1.6.5",
@@ -37,6 +39,7 @@
     "react-merge-refs": "^2.1.1",
     "three": "0.171.0",
     "three-stdlib": "^2.35.7",
+    "url-loader": "^4.1.1",
     "zod": "^3.23.4",
     "zustand": "^4.5.2"
   },

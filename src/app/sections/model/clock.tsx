@@ -3,14 +3,18 @@
 import { Center } from '@react-three/drei'
 import gsap from 'gsap'
 import { useControls } from 'leva'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useLayoutEffect, useState } from 'react'
+
+import useAudio from '~/hooks/use-audio'
 
 import DigitModel from './clock_model'
 import Dot from './dot'
 
 export default function Clock() {
   const [time, setTime] = useState({ hours: '', minutes: '', seconds: '' })
-  const { color, base, intensity } = useControls('Digits', {
+  const audio = useAudio()
+  const { color, base, intensity, sound } = useControls('Digits', {
+    sound: false,
     base: '#000000',
     color: '#ff5f15',
     intensity: {
@@ -67,12 +71,16 @@ export default function Clock() {
             })
           }
         })
+
+        if (sound && !audio?.playing()) {
+          audio?.play()
+        }
       }
     },
     [intensity, animateDigit]
   )
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const interval = setInterval(() => {
       const currentTime = new Date()
       const hours = currentTime.getHours().toString().padStart(2, '0')
