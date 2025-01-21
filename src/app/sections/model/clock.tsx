@@ -11,7 +11,11 @@ import DigitModel from './clock_model'
 import Dot from './dot'
 
 export default function Clock() {
-  const [time, setTime] = useState({ hours: '', minutes: '', seconds: '' })
+  const [time, setTime] = useState({
+    hours: '88',
+    minutes: '88',
+    seconds: '88'
+  })
 
   const { color, base, intensity, sound } = useControls('Digits', {
     sound: false,
@@ -30,7 +34,7 @@ export default function Clock() {
       target: any,
       prop: any,
       value: any,
-      options = { ease: 'back.inOut(4)', duration: 0.2 }
+      options = { ease: 'back.inOut(4)', duration: 0.3 }
     ) => {
       gsap.to(target, {
         [prop]: value,
@@ -50,8 +54,8 @@ export default function Clock() {
             const [, child] = ref.current.children
             const target = child.material
             animateDigit(target, 'emissiveIntensity', intensity, {
-              ease: 'power4.out(4)',
-              duration: 0.3
+              ease: 'power4.out(10)',
+              duration: 0.8
             })
           }
         })
@@ -68,7 +72,7 @@ export default function Clock() {
             const [, child] = ref.current.children
             animateDigit(child.material, 'emissiveIntensity', 0.01, {
               duration: 0.8,
-              ease: 'power1.out(4)'
+              ease: 'power1.out(10)'
             })
           }
         })
