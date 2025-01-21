@@ -1,10 +1,11 @@
 import { useLayoutEffect, useState } from 'react'
 
+/* @ts-ignore */
 import Click from '../app/sections/model/click.mp3'
 import useInteraction from './use-interaction'
 
 export default function useAudio() {
-  const [audio, setAudio] = useState(null)
+  const [audio, setAudio] = useState(null) as any
   const interacted = useInteraction()
   useLayoutEffect(() => {
     ;(async () => {
@@ -27,7 +28,7 @@ export default function useAudio() {
         audio.unload()
       }
     }
-  }, [interacted])
+  }, [interacted, audio])
 
   return audio
 }
