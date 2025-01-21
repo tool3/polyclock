@@ -12,6 +12,7 @@ import { LUTCubeLoader } from 'three-stdlib'
 
 export default function Effects() {
   const {
+    enabled,
     lut,
     lutEnabled,
     bloomEnabled,
@@ -24,6 +25,7 @@ export default function Effects() {
     scanlineEnabled,
     scanlineStrength
   } = useControls('Post Processing', {
+    enabled: true,
     LUTs: folder(
       {
         lutEnabled: true,
@@ -82,7 +84,7 @@ export default function Effects() {
           max: 1
         },
         vignetteOffset: {
-          value: 0.5,
+          value: 0.4,
           min: 0,
           max: 1
         }
@@ -93,7 +95,7 @@ export default function Effects() {
 
   const lutTexture = useLoader(LUTCubeLoader, lut)
 
-  return (
+  return enabled ? (
     <EffectComposer multisampling={0} stencilBuffer>
       {bloomEnabled ? (
         <Bloom
@@ -117,7 +119,7 @@ export default function Effects() {
       )}
       {lutEnabled ? <LUT lut={lutTexture.texture} /> : <></>}
     </EffectComposer>
-  )
+  ) : null
 }
 
 useLoader.preload(LUTCubeLoader, '/textures/LUTs/Filmic-1.CUBE')

@@ -44,7 +44,10 @@ export default function Clock() {
           if (ref.current?.children) {
             const [, child] = ref.current.children
             const target = child.material
-            animateDigit(target, 'emissiveIntensity', intensity)
+            animateDigit(target, 'emissiveIntensity', intensity, {
+              ease: 'power4.out',
+              duration: 0.5
+            })
           }
         })
       }
@@ -58,9 +61,9 @@ export default function Clock() {
 
           if (ref.current?.children) {
             const [, child] = ref.current.children
-            animateDigit(child.material, 'emissiveIntensity', 0.1, {
-              duration: 0.6,
-              ease: 'power4.out'
+            animateDigit(child.material, 'emissiveIntensity', 0.01, {
+              duration: 1,
+              ease: 'power1.out'
             })
           }
         })
