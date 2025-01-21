@@ -5,18 +5,19 @@ import Click from '../app/sections/model/click.mp3'
 import useInteraction from './use-interaction'
 
 export default function useAudio() {
-  const [audio, setAudio] = useState(null) as any
   const interacted = useInteraction()
+  const [audio, setAudio] = useState() as any
+
   useLayoutEffect(() => {
     ;(async () => {
       if (interacted) {
         const { Howl } = await import('howler')
+
         setAudio(
           new Howl({
             src: [Click],
             format: ['mp3'],
-            preload: false,
-            autoplay: false,
+            preload: true,
             html5: true
           })
         )
@@ -28,7 +29,7 @@ export default function useAudio() {
         audio.unload()
       }
     }
-  }, [interacted, audio])
+  }, [interacted])
 
   return audio
 }

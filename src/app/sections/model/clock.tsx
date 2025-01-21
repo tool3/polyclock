@@ -12,7 +12,7 @@ import Dot from './dot'
 
 export default function Clock() {
   const [time, setTime] = useState({ hours: '', minutes: '', seconds: '' })
-  const audio = useAudio() as any
+
   const { color, base, intensity, sound } = useControls('Digits', {
     sound: false,
     base: '#000000',
@@ -23,6 +23,7 @@ export default function Clock() {
       max: 10
     }
   })
+  const audio = useAudio() as any
 
   const animateDigit = useCallback(
     (
@@ -39,43 +40,45 @@ export default function Clock() {
     []
   )
 
-  const to = useCallback((directions: any[], reverses: any[]) => {
-    if (reverses?.length) {
-      reverses?.forEach((item) => {
-        const { ref, axis } = item
-        animateDigit(ref.current.rotation, axis, 0)
-        if (ref.current?.children) {
-          const [, child] = ref.current.children
-          const target = child.material
-          animateDigit(target, 'emissiveIntensity', intensity, {
-            ease: 'power4.out(4)',
-            duration: 0.3
-          })
-        }
-      })
-    }
-
-    if (directions?.length) {
-      directions?.forEach((item) => {
-        const { ref, axis, negative } = item
-        const target = ref.current.rotation
-        const value = negative ? -Math.PI / 2 : Math.PI / 2
-        animateDigit(target, axis, value)
-
-        if (ref.current?.children) {
-          const [, child] = ref.current.children
-          animateDigit(child.material, 'emissiveIntensity', 0.01, {
-            duration: 1,
-            ease: 'power1.out(4)'
-          })
-        }
-      })
-
-      if (sound && !audio?.playing()) {
-        audio?.play()
+  const to = useCallback(
+    (directions: any[], reverses: any[]) => {
+      if (reverses?.length) {
+        reverses?.forEach((item) => {
+          const { ref, axis } = item
+          animateDigit(ref.current.rotation, axis, 0)
+          if (ref.current?.children) {
+            const [, child] = ref.current.children
+            const target = child.material
+            animateDigit(target, 'emissiveIntensity', intensity, {
+              ease: 'power4.out(4)',
+              duration: 0.3
+            })
+          }
+        })
       }
-    }
-  }, [])
+
+      if (directions?.length) {
+        directions?.forEach((item) => {
+          const { ref, axis, negative } = item
+          const target = ref.current.rotation
+          const value = negative ? -Math.PI / 2 : Math.PI / 2
+          animateDigit(target, axis, value)
+
+          if (ref.current?.children) {
+            const [, child] = ref.current.children
+            animateDigit(child.material, 'emissiveIntensity', 0.01, {
+              duration: 1,
+              ease: 'power1.out(4)'
+            })
+          }
+        })
+      }
+      if (sound && !audio.playing()) {
+        audio.play()
+      }
+    },
+    [intensity, animateDigit, audio, sound]
+  )
 
   useLayoutEffect(() => {
     const interval = setInterval(() => {
