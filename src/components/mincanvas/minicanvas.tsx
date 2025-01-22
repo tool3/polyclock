@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import { Environment, Html, OrbitControls, Stats } from '@react-three/drei'
+import { Environment, OrbitControls, Stats } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { button, Leva, useControls } from 'leva'
 import { Perf } from 'r3f-perf'
@@ -62,13 +62,14 @@ export default function CanvasWithModel({
         <color attach="background" args={[background]} />
         {fps ? <Perf position="bottom-left" logsPerSecond={1} /> : null}
         <Loader />
-        <Suspense fallback={<Html center>Loading</Html>}>{children}</Suspense>
-        {children}
+        <Suspense fallback={null}>{children}</Suspense>
         <Environment
           files={'/textures/environments/studio_small_03_1k.hdr'}
           environmentRotation={[0, 0, Math.PI / 2]}
         />
+
         <Effects />
+
         <OrbitControls ref={target} makeDefault minZoom={10} maxZoom={100} />
       </Canvas>
     </>
