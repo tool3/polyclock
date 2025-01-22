@@ -30,14 +30,32 @@ export default function Effects() {
       {
         lutEnabled: true,
         lut: {
-          value: '/textures/LUTs/Filmic-1.CUBE',
+          value: 'FILMIC.CUBE',
           options: {
-            filmic: '/textures/LUTs/Filmic-1.CUBE',
-            bourbon: '/textures/LUTs/Bourbon-64.CUBE',
-            chemical: '/textures/LUTs/Chemical-168.CUBE',
-            clayton: '/textures/LUTs/Clayton-33.CUBE',
-            cubicle: '/textures/LUTs/Cubicle-99.CUBE',
-            remy: '/textures/LUTs/Remy-24.CUBE'
+            ARCHIVE: 'ARCHIVE.CUBE',
+            ARTISTRY: 'ARTISTRY.CUBE',
+            BOURBON: 'BOURBON.CUBE',
+            CHEMICAL: 'CHEMICAL.CUBE',
+            CHRONICLE: 'CHRONICLE.CUBE',
+            CLAYTON: 'CLAYTON.CUBE',
+            CONCESSION: 'CONCESSION.CUBE',
+            COUNTRY: 'COUNTRY.CUBE',
+            CUBICLE: 'CUBICLE.CUBE',
+            DANGERFIELD: 'DANGERFIELD.CUBE',
+            DONT_BREATH: 'DONT_BREATH.cube',
+            DUSK: 'DUSK.CUBE',
+            ERA: 'ERA.CUBE',
+            EVEREST: 'EVEREST.CUBE',
+            FILMIC: 'FILMIC.CUBE',
+            GHOST: 'GHOST.CUBE',
+            HALFDOME: 'HALFDOME.CUBE',
+            JOKER: 'JOKER.CUBE',
+            LOS_ANGELES: 'LOS_ANGELES.CUBE',
+            MANHATTAN: 'MANHATTAN.CUBE',
+            OTHERDAY: 'OTHERDAY.CUBE',
+            REMY: 'REMY.CUBE',
+            STRANGERS: 'STRANGERS.CUBE',
+            WISHAWOODS: 'WISHAWOODS.CUBE'
           }
         }
       },
@@ -79,12 +97,12 @@ export default function Effects() {
       {
         vignetteEnabled: true,
         vignetteStrength: {
-          value: 0.5,
+          value: 0.7,
           min: 0,
           max: 1
         },
         vignetteOffset: {
-          value: 0.4,
+          value: 0,
           min: 0,
           max: 1
         }
@@ -92,11 +110,11 @@ export default function Effects() {
       { collapsed: true }
     )
   })
-
-  const lutTexture = useLoader(LUTCubeLoader, lut)
+  const lutPath = `/textures/LUTs/${lut}`
+  const lutTexture = useLoader(LUTCubeLoader, lutPath)
 
   return enabled ? (
-    <EffectComposer stencilBuffer>
+    <EffectComposer multisampling={4} stencilBuffer>
       {bloomEnabled ? (
         <Bloom
           mipmapBlur
@@ -122,4 +140,4 @@ export default function Effects() {
   ) : null
 }
 
-useLoader.preload(LUTCubeLoader, '/textures/LUTs/Filmic-1.CUBE')
+useLoader.preload(LUTCubeLoader, '/textures/LUTs/FILMIC.CUBE')

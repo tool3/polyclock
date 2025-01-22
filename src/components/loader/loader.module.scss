@@ -1,48 +1,33 @@
-
 .loader {
-    font-family: SevenSeg;
-    font-size: 12rem;
-    color: var(--theme-color);
-    -webkit-text-stroke: 3px black;
-    letter-spacing: -13px;
-    will-change: opacity;
-    width: 100vw;
-    height: 100vh;
-    backdrop-filter: blur(10px);
-}
+  font-family: SevenSeg;
+  font-size: 12rem;
+  color: var(--theme-color);
+  -webkit-text-stroke: 3px black;
+  letter-spacing: -13px;
+  will-change: opacity;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(10px);
 
-.rendered {
-    opacity: 1;
-}
-
-.word {
-    display: block;
-
-    .letter {
-        display: block;
-    }
-}
-
-.letters { 
+  .letters {
     display: flex;
     position: absolute;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    height: 9rem;
     width: 100%;
-
-    &.one {
-        position: absolute;
-        top: -9rem;    
-    }
-    &.two {
-        position: absolute;
-        top: -9rem;
-    }
-
     .letter {
-        display: block;
+  
     }
+  }
+  
+
 }
 
+.rendered {
+  opacity: 1;
+}
+
+.letter {
+  display: block;
+}

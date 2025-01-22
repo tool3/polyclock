@@ -17,15 +17,11 @@ export default function Clock() {
     seconds: '88'
   })
 
-  const { color, base, intensity, sound } = useControls('Digits', {
+  const intensity = 2.0
+  const { color, base, sound } = useControls('Digits', {
     sound: false,
     base: '#000000',
-    color: '#ff5f15',
-    intensity: {
-      value: 2.0,
-      min: 0,
-      max: 10
-    }
+    color: '#ff5f15'
   })
   const audio = useAudio() as any
 
