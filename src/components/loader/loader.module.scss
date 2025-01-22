@@ -8,6 +8,8 @@
   width: 100vw;
   height: 100vh;
   backdrop-filter: blur(10px);
+  user-select: none;
+  pointer-events: none;
 
   .letters {
     display: flex;
