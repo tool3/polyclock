@@ -1,10 +1,11 @@
 /* eslint-disable react/no-unknown-property */
 import { useGLTF } from '@react-three/drei'
-import { useRef } from 'react'
+import gsap from 'gsap'
+import { useLayoutEffect, useRef } from 'react'
 
 export default function Dot(props) {
   const { nodes } = useGLTF('/models/dot.glb') as any
-  const { color, intensity, base } = props
+  const { color, intensity, base, seconds } = props
   const group = useRef() as any
 
   const lightColorProps = {
@@ -20,15 +21,15 @@ export default function Dot(props) {
     toneMapped: false
   }
 
-  // useLayoutEffect(() => {
-  //   // if (group) {
-  //   //   gsap.to(group.current.rotation, {
-  //   //     z: -Math.PI / 2,
-  //   //     ease: 'back.inOut(4)',
-  //   //     duration: 0.3
-  //   //   })
-  //   // }
-  // }, [])
+  useLayoutEffect(() => {
+    if (Number(seconds) % 10 === 0 && group) {
+      gsap.to(group.current.rotation, {
+        z: '+=' + -Math.PI / 2,
+        ease: 'back.inOut(4)',
+        duration: 0.3
+      })
+    }
+  }, [seconds])
 
   return (
     <group

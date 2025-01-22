@@ -110,6 +110,7 @@ export default function Clock() {
     color,
     base,
     intensity,
+    seconds: time.seconds,
     scale: 0.5
   }
 
