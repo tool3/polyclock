@@ -114,7 +114,7 @@ export default function Effects() {
   const lutTexture = useLoader(LUTCubeLoader, lutPath)
 
   return enabled ? (
-    <EffectComposer multisampling={4} stencilBuffer>
+    <EffectComposer stencilBuffer>
       {bloomEnabled ? (
         <Bloom
           mipmapBlur
