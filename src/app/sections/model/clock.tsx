@@ -6,6 +6,7 @@ import { useControls } from 'leva'
 import { useCallback, useLayoutEffect, useState } from 'react'
 
 import useAudio from '~/hooks/use-audio'
+import useFavicons from '~/hooks/use-favicons'
 
 import DigitModel from './clock_model'
 import Dot from './dot'
@@ -16,6 +17,8 @@ export default function Clock() {
     minutes: '88',
     seconds: '88'
   })
+
+  useFavicons({ hours: time.hours })
 
   const intensity = 2.0
   const { color, base, sound } = useControls('Digits', {
@@ -88,8 +91,6 @@ export default function Clock() {
       const seconds = currentTime.getSeconds().toString().padStart(2, '0')
       setTime({ hours, minutes, seconds })
     }, 5)
-
-    dispatchEvent(new Event('rendered'))
 
     return () => clearInterval(interval)
   }, [])
