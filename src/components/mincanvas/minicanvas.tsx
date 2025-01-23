@@ -6,9 +6,11 @@ import { Perf } from 'r3f-perf'
 import { ReactNode, Suspense, useRef, useState } from 'react'
 
 import { useDeviceDetect } from '~/hooks/use-device-detect'
+import useShortcuts from '~/hooks/use-shortcuts'
 
 import Debug from '../debug/debug'
 import Effects from './effects'
+import gsap from 'gsap'
 
 export default function CanvasWithModel({
   style,
@@ -21,6 +23,15 @@ export default function CanvasWithModel({
   const target = useRef() as any
   const [active, setActive] = useState(false)
   const { isMobile } = useDeviceDetect()
+  useShortcuts({
+    key: 'Digit0',
+    action: () => {
+      // target.current.reset()
+      console.log(target.current.target)
+      gsap.to(target.current.target, { x: 0, y: 0, z: 0 })
+    }
+  })
+
   const zoom = isMobile ? 10 : 20
 
   const { fps, background } = useControls({

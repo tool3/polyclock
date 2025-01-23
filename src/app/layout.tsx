@@ -18,11 +18,11 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
 
 export const metadata: Metadata = {
   title: {
-    default: 'polyclock | talhayut',
-    template: '%s | tal hayut'
+    default: 'Polyclock | Tal Hayut',
+    template: '%s | Tal Hayut'
   },
   metadataBase: siteURL,
-  description: `7 segment display mechanical clock made with threejs`,
+  description: `7 segment display 3D mechanical clock`,
   icons: [
     {
       rel: 'apple-touch-icon',
