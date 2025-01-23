@@ -1,25 +1,29 @@
 .loader {
-  font-family: SevenSeg;
-  font-size: 12rem;
+  font-family: DSEGMINI7;
+  font-size: 8rem;
   color: var(--theme-color);
-  -webkit-text-stroke: 3px black;
-  letter-spacing: -13px;
   will-change: opacity;
   width: 100vw;
   height: 100vh;
-  backdrop-filter: blur(10px);
+  background: black;
   user-select: none;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1;
+  position: fixed;
 
   .letters {
     display: flex;
-    position: absolute;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
     width: 100%;
+
     .letter {
-  
+      display: block;
     }
   }
 
@@ -28,14 +32,29 @@
     letter-spacing: -10px;
     -webkit-text-stroke: 2px black;
   }
-
-
 }
 
-.rendered {
-  opacity: 1;
+.off {
+  position: absolute;
+  // top: 0px;
+  white-space: nowrap;
+  color: var(--theme-color-off);
+  z-index: 1;
 }
 
-.letter {
-  display: block;
+.on {
+  display: flex;
+  color: #ff5f15;
+  z-index: 2;
+  -webkit-text-stroke: none;
+  text-shadow: 0 0 .2rem var(--theme-color-on), 0 0 1em var(--theme-color-on), 0 0 0.2em var(--theme-color-on);
+}
+
+.title {
+  display: flex;
+  font-family: DSEGMINI7;
+}
+
+.fourteen {
+  font-family: DSEGMINI14;
 }

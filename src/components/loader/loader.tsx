@@ -1,32 +1,31 @@
 'use client'
-import { Html, useProgress } from '@react-three/drei'
+import { useProgress } from '@react-three/drei'
 import clsx from 'clsx'
 import gsap from 'gsap'
-import { useEffect } from 'react'
-
-import { useHasRendered } from '~/hooks/use-has-rendered'
+import { useLayoutEffect } from 'react'
 
 import s from './loader.module.scss'
 
+function fillNumbers(array: string[]) {
+  if (array.length === 1) {
+    return ['0', '0', ...array]
+  } else if (array.length === 2) {
+    return ['0', ...array]
+  } else {
+    return array
+  }
+}
+
 export default function Loader() {
-  const rendered = useHasRendered()
   const { progress } = useProgress()
 
-  const style = {
-    width: '100vw',
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center'
-  } as any
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (progress === 100) {
-      gsap.to(`.${s.letters} .${s.letter}`, {
-        yPercent: -100,
-        ease: 'back.inOut',
-        stagger: 0.05,
+      gsap.to(`.${s.letter}`, {
+        color: 'rgb(81, 33, 12)',
+        textShadow: 'none',
+        ease: 'power1.out(10)',
+        // stagger: 0.05,
         duration: 1,
         delay: 1
       })
@@ -36,27 +35,44 @@ export default function Loader() {
       })
       gsap.to(`.${s.loader}`, {
         display: 'none',
-        delay: 2.5
+        delay: 2
       })
     }
   }, [progress])
 
-  const inLetters = ['P', 'O', 'L', 'Y', 'C', 'L', 'O', 'C', 'K']
-  const letterInComponents = inLetters.map((letter, i) => {
+  const letters = ['P', '0', 'L', 'y', 'C', 'L', 'O', 'C', 'K']
+  const numbers = fillNumbers(progress.toFixed(0).split(''))
+
+  const loadComponent = numbers.map((letter, i) => {
     return (
       <div key={i} className={s.letter}>
         {letter}
       </div>
     )
   })
+  const lettersComponent = letters.map((letter, i) => {
+    const fourteen = new Set(['O', 'C'])
+
+    return (
+      <div
+        key={i}
+        className={clsx(s.letter, fourteen.has(letter) ? s.fourteen : '')}
+      >
+        {letter}
+      </div>
+    )
+  })
 
   return (
-    <Html
-      center
-      style={style}
-      className={clsx(s.loader, rendered ? s.rendered : '')}
-    >
-      <div className={s.letters}>{letterInComponents}</div>
-    </Html>
+    <div className={s.loader}>
+      <div className={s.title}>
+        <span className={s.on}>{lettersComponent}</span>
+        <span className={s.off}>{lettersComponent.map(() => '8')}</span>
+      </div>
+      <div className={s.letters}>
+        <span className={s.on}>{loadComponent}</span>
+        <span className={s.off}>{loadComponent.map(() => '8')}</span>
+      </div>
+    </div>
   )
 }

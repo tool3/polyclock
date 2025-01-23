@@ -11,6 +11,17 @@
 }
 
 @font-face {
+  font-family: DSEGMINI7;
+  src: url('../../public/fonts/dseg/DSEG7-Classic-MINI/DSEG7ClassicMini-Regular.woff2') 
+    format('woff2');
+}
+@font-face {
+  font-family: DSEGMINI14;
+  src: url('../../public/fonts/dseg/DSEG14-Classic-MINI/DSEG14ClassicMini-Regular.woff2') 
+    format('woff2');
+}
+
+@font-face {
   font-family: NightWatch;
   src: url('../../public/fonts/the-night-watch/TheNightWatch.woff2')
     format('woff2');
@@ -32,7 +43,9 @@
     ubuntu, cantarell, fira sans, droid sans, helvetica neue, sans-serif;
 
   // Colors
-  --theme-color: #ff5f15;
+  --theme-color: #ff9c6e;
+  --theme-color-on: #ff5f15;
+  --theme-color-off: #51210c;
   --inspect-color: #f00;
   --color-red: #f00;
   --color-black: #000;
