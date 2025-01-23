@@ -12,7 +12,7 @@ import Wall from './wall'
 
 export default function DigitModel(props) {
   const { nodes } = useGLTF('/models/clock.glb') as any
-  const { to, state, max, color, base, intensity, last } = props
+  const { to, state, max, color, base, intensity, last, dotsHolder } = props
 
   const [bottom, mid, bottom_left, bottom_right, top, top_right, top_left] =
     Array.from({ length: 7 }, () => createRef()) as any[]
@@ -202,7 +202,12 @@ export default function DigitModel(props) {
       </group>
       {frame ? <FrameModel {...baseProps} /> : null}
       {wall ? (
-        <Wall lightProps={lightColorProps} baseProps={baseProps} last={last} />
+        <Wall
+          dotsHolder={dotsHolder}
+          lightProps={lightColorProps}
+          baseProps={baseProps}
+          last={last}
+        />
       ) : null}
     </group>
   )

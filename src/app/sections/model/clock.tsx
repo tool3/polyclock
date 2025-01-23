@@ -129,6 +129,7 @@ export default function Clock() {
           state={second}
           position={[0, -5, 0]}
           max={'3'}
+          dotsHolder
         />
         <group position={[3, 0, 0.45]}>
           <Dot {...dotProps} position={[0, 1.6, -0.21]} />
@@ -148,6 +149,7 @@ export default function Clock() {
           scale={0.5}
           position={[10, -5, 0]}
           max={'9'}
+          dotsHolder
         />
         <group position={[3, 0, 0.45]}>
           <Dot {...dotProps} position={[10, 1.6, -0.21]} />

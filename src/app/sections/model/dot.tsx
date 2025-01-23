@@ -24,7 +24,7 @@ export default function Dot(props) {
   useLayoutEffect(() => {
     if (Number(seconds) % 10 === 0 && group) {
       gsap.to(group.current.rotation, {
-        z: '+=' + -Math.PI / 2,
+        z: '+=' + -(180 * Math.PI) / 180,
         ease: 'back.inOut(4)',
         duration: 0.3
       })
@@ -51,3 +51,4 @@ export default function Dot(props) {
 }
 
 useGLTF.preload('/models/dot.glb')
+// remove rods from non 0 and 4  digits (index)

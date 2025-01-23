@@ -2,7 +2,7 @@
 import { useGLTF } from '@react-three/drei'
 import { useControls } from 'leva'
 
-export default function Wall({ last, ...props }) {
+export default function Wall({ last, dotsHolder, ...props }) {
   const { nodes } = useGLTF('/models/wall.glb') as any
 
   const { wallColor } = useControls({
@@ -36,7 +36,6 @@ export default function Wall({ last, ...props }) {
           >
             <meshStandardMaterial {...baseProps} />
           </mesh>
-
           <mesh
             castShadow
             receiveShadow
@@ -45,7 +44,6 @@ export default function Wall({ last, ...props }) {
           >
             <meshStandardMaterial {...baseProps} />
           </mesh>
-
           <mesh
             castShadow
             receiveShadow
@@ -54,28 +52,30 @@ export default function Wall({ last, ...props }) {
           >
             <meshStandardMaterial {...baseProps} />
           </mesh>
-
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.frame004.geometry}
-            position={[8.098, 15.3, -0.444]}
-            rotation={[0, Math.PI / 2, 0]}
-            scale={[0.808, 1, 1]}
-          >
-            <meshStandardMaterial {...baseProps} />
-          </mesh>
-
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.frame010.geometry}
-            position={[8.098, 1.3, -0.444]}
-            rotation={[0, Math.PI / 2, 0]}
-            scale={[0.808, 1, 1]}
-          >
-            <meshStandardMaterial {...baseProps} />
-          </mesh>
+          {dotsHolder ? (
+            <>
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.frame004.geometry}
+                position={[8.098, 15.3, -0.444]}
+                rotation={[0, Math.PI / 2, 0]}
+                scale={[0.808, 1, 1]}
+              >
+                <meshStandardMaterial {...baseProps} />
+              </mesh>
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.frame010.geometry}
+                position={[8.098, 1.3, -0.444]}
+                rotation={[0, Math.PI / 2, 0]}
+                scale={[0.808, 1, 1]}
+              >
+                <meshStandardMaterial {...baseProps} />
+              </mesh>
+            </>
+          ) : null}
         </group>
       ) : null}
     </group>
