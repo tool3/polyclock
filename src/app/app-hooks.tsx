@@ -80,7 +80,7 @@ const useFontsLoaded = () => {
 
       if (isClient) {
         // eslint-disable-next-line no-console
-        console.log(consoleLog, style)
+        console.log(`%c${consoleLog}`, style)
       }
     }
 
