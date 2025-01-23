@@ -21,21 +21,21 @@ export default function Loader() {
 
   useLayoutEffect(() => {
     if (progress === 100) {
-      // gsap.to(`.${s.letter}`, {
-      //   color: 'rgb(81, 33, 12)',
-      //   textShadow: 'none',
-      //   ease: 'power1.out(10)',
-      //   duration: 1,
-      //   delay: 1
-      // })
-      // gsap.to(`.${s.loader}`, {
-      //   opacity: 0,
-      //   delay: 2
-      // })
-      // gsap.to(`.${s.loader}`, {
-      //   display: 'none',
-      //   delay: 2
-      // })
+      gsap.to(`.${s.letter}`, {
+        color: 'rgb(81, 33, 12)',
+        textShadow: 'none',
+        ease: 'power1.out(10)',
+        duration: 1,
+        delay: 1
+      })
+      gsap.to(`.${s.loader}`, {
+        opacity: 0,
+        delay: 2
+      })
+      gsap.to(`.${s.loader}`, {
+        display: 'none',
+        delay: 2
+      })
     }
   }, [progress])
 
