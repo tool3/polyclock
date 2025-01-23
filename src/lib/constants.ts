@@ -21,10 +21,8 @@ export const siteOrigin = siteURL.origin
 // we like putting this in the JavaScript console,
 // as our signature.
 // you can delete it if not needed.
-const style = "font-family: 'DSEGMINI7'; color: white; font-size: 5rem;"
-console.log("%cHooray", style);
-export const basementLog = `        
-
+export const style = "font-family: 'DSEGMINI7'; color: white; font-size: 5rem;"
+export const consoleLog = `        
 Tal Hayut        
 https://github.com/tool3
 https://linkedin.com/in/talhayut

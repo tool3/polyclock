@@ -2,10 +2,16 @@
 
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 import { useAppStore } from '~/context/use-app-store'
-import { basementLog, gaTrackingId, isClient, isDev } from '~/lib/constants'
+import {
+  consoleLog,
+  gaTrackingId,
+  isClient,
+  isDev,
+  style
+} from '~/lib/constants'
 import { GAScripts, useAppGA } from '~/lib/ga'
 
 gsap.registerPlugin(useGSAP)
@@ -16,11 +22,6 @@ export const AppHooks = () => {
   useOverflowDebuggerInDev()
   useUserIsTabbing()
   useFontsLoaded()
-
-  if (isClient) {
-    // eslint-disable-next-line no-console
-    console.log(basementLog)
-  }
 
   return gaTrackingId ? <GAScripts /> : null
 }
@@ -76,6 +77,11 @@ const useFontsLoaded = () => {
       window.clearTimeout(timeout)
       useAppStore.setState({ fontsLoaded: true })
       document.documentElement.classList.add('fonts-loaded')
+
+      if (isClient) {
+        // eslint-disable-next-line no-console
+        console.log(consoleLog, style)
+      }
     }
 
     try {
