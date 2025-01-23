@@ -21,7 +21,7 @@ export const siteOrigin = siteURL.origin
 // we like putting this in the JavaScript console,
 // as our signature.
 // you can delete it if not needed.
-export const style = "font-family: Grotesque; color: white; font-size: 1rem;"
+export const style = 'font-family: Grotesque; color: white; font-size: 1rem;'
 export const consoleLog = `        
 TAL HAYUT
 
