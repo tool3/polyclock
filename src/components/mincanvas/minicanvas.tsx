@@ -1,16 +1,16 @@
 /* eslint-disable react/no-unknown-property */
 import { Environment, OrbitControls, Stats } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
+import gsap from 'gsap'
 import { button, Leva, useControls } from 'leva'
 import { Perf } from 'r3f-perf'
-import { ReactNode, Suspense, useRef, useState } from 'react'
+import { ReactNode, Suspense, useEffect, useRef, useState } from 'react'
 
 import { useDeviceDetect } from '~/hooks/use-device-detect'
 import useShortcuts from '~/hooks/use-shortcuts'
 
 import Debug from '../debug/debug'
 import Effects from './effects'
-import gsap from 'gsap'
 
 export default function CanvasWithModel({
   style,
@@ -23,16 +23,16 @@ export default function CanvasWithModel({
   const target = useRef() as any
   const [active, setActive] = useState(false)
   const { isMobile } = useDeviceDetect()
+  const zoom = isMobile ? 10 : 20
+
   useShortcuts({
-    key: 'Digit0',
-    action: () => {
-      // target.current.reset()
-      console.log(target.current.target)
-      gsap.to(target.current.target, { x: 0, y: 0, z: 0 })
+    Digit0: {
+      key: 'Digit0',
+      action: () => {
+        target.current.reset()
+      }
     }
   })
-
-  const zoom = isMobile ? 10 : 20
 
   const { fps, background } = useControls({
     fps: false,
@@ -53,6 +53,12 @@ export default function CanvasWithModel({
       target.current.reset()
     })
   })
+
+  useEffect(() => {
+    if (target.current) {
+      gsap.from(target.current, { zoom: 0, delay: 10 })
+    }
+  }, [target])
 
   return (
     <>
