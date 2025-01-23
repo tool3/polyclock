@@ -22,8 +22,8 @@ export default function CanvasWithModel({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const target = useRef() as any
   const [active, setActive] = useState(false)
-  const { isMobile } = useDeviceDetect()
-  const zoom = isMobile ? 10 : 20
+  const { isMobile, isTablet } = useDeviceDetect()
+  const zoom = isMobile && !isTablet ? 13 : 30
 
   useShortcuts({
     Digit0: {
