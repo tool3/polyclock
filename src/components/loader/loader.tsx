@@ -25,7 +25,6 @@ export default function Loader() {
         color: 'rgb(81, 33, 12)',
         textShadow: 'none',
         ease: 'power1.out(10)',
-        // stagger: 0.05,
         duration: 1,
         delay: 1
       })

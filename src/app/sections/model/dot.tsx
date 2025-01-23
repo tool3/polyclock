@@ -51,4 +51,3 @@ export default function Dot(props) {
 }
 
 useGLTF.preload('/models/dot.glb')
-// remove rods from non 0 and 4  digits (index)
