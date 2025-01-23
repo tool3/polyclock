@@ -5,6 +5,8 @@ import { button, Leva, useControls } from 'leva'
 import { Perf } from 'r3f-perf'
 import { ReactNode, Suspense, useRef, useState } from 'react'
 
+import { useDeviceDetect } from '~/hooks/use-device-detect'
+
 import Debug from '../debug/debug'
 import Effects from './effects'
 
@@ -16,7 +18,10 @@ export default function CanvasWithModel({
   children: ReactNode
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const target = useRef() as any
   const [active, setActive] = useState(false)
+  const { isMobile } = useDeviceDetect()
+  const zoom = isMobile ? 10 : 20
 
   const { fps, background } = useControls({
     fps: false,
@@ -31,8 +36,6 @@ export default function CanvasWithModel({
       }
     }
   })
-
-  const target = useRef() as any
 
   useControls({
     ['reset camera']: button(() => {
@@ -53,7 +56,7 @@ export default function CanvasWithModel({
           frustumCulled: true,
           fov: 70,
           position: [0, 0, 50],
-          zoom: 20
+          zoom
         }}
         gl={{ premultipliedAlpha: false, powerPreference: 'high-performance' }}
         style={style}
