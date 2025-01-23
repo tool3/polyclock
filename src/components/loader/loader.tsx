@@ -68,7 +68,7 @@ export default function Loader() {
         <span className={s.on}>{lettersComponent}</span>
         <span className={s.off}>{lettersComponent.map(() => '8')}</span>
       </div>
-      <div className={s.letters}>
+      <div className={s.numbers}>
         <span className={s.on}>{loadComponent}</span>
         <span className={s.off}>{loadComponent.map(() => '8')}</span>
       </div>

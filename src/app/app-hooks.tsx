@@ -11,16 +11,16 @@ import { GAScripts, useAppGA } from '~/lib/ga'
 gsap.registerPlugin(useGSAP)
 
 export const AppHooks = () => {
-  if (isClient) {
-    // eslint-disable-next-line no-console
-    console.log(basementLog)
-  }
-
   if (gaTrackingId) useAppGA()
 
   useOverflowDebuggerInDev()
   useUserIsTabbing()
   useFontsLoaded()
+
+  if (isClient) {
+    // eslint-disable-next-line no-console
+    console.log(basementLog)
+  }
 
   return gaTrackingId ? <GAScripts /> : null
 }
