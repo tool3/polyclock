@@ -9,7 +9,7 @@ export default function DisplayClock() {
   return (
     <>
       <Loader />
-      <CanvasWithModel style={{ width: '100vw', height: '100vh' }}>
+      <CanvasWithModel style={{ width: '100vw', height: '100svh' }}>
         <Clock />
       </CanvasWithModel>
     </>

@@ -24,7 +24,7 @@ export default function Loader() {
       gsap.to(`.${s.letter}`, {
         color: 'rgb(81, 33, 12)',
         textShadow: 'none',
-        ease: 'power1.out(10)',
+        ease: 'circ.out',
         duration: 1,
         delay: 1
       })
