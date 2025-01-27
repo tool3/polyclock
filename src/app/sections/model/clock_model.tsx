@@ -23,7 +23,7 @@ export default function DigitModel(props) {
       { ref: top, axis: 'x', negative: true },
       { ref: mid, axis: 'x', negative: true },
       { ref: top_left, axis: 'y', negative: true },
-      { ref: bottom, axis: 'x', negative: true },
+      { ref: bottom, axis: 'x' },
       { ref: bottom_left, axis: 'y', negative: true }
     ],
     '2': [

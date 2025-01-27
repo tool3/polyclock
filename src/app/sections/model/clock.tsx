@@ -24,7 +24,7 @@ export default function Clock() {
   const { color, base, sound, track } = useControls('Digits', {
     sound: false,
     track: {
-      value: 'crank',
+      value: 'tock',
       options: {
         crank: 'crank',
         tick: 'tick',
@@ -84,7 +84,7 @@ export default function Clock() {
           }
         })
       }
-      if (sound && !audio.playing()) {
+      if (audio && sound && !audio.playing()) {
         audio.play()
       }
     },
@@ -95,15 +95,13 @@ export default function Clock() {
 
   useLayoutEffect(() => {
     const interval = setInterval(() => {
-      // const currentTime = new Date()
-      const currentTime = new Date(1737972000000 + counter)
-
+      const currentTime = new Date()
       const hours = currentTime.getHours().toString().padStart(2, '0')
       const minutes = currentTime.getMinutes().toString().padStart(2, '0')
       const seconds = currentTime.getSeconds().toString().padStart(2, '0')
       setTime({ hours, minutes, seconds })
       setCounter(counter + 1000)
-    }, 1000)
+    }, 5)
 
     return () => clearInterval(interval)
   }, [counter])

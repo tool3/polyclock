@@ -42,7 +42,7 @@
 
 .on {
   display: flex;
-  color: #ff5f15;
+  color: var(--theme-color-on);
   z-index: 2;
   -webkit-text-stroke: none;
   text-shadow: 0 0 .2rem var(--theme-color-on), 0 0 1em var(--theme-color-on), 0 0 0.2em var(--theme-color-on);
