@@ -1,21 +1,27 @@
 import { useLayoutEffect, useState } from 'react'
 
-/* @ts-ignore */
-import Click from '../app/sections/model/click.mp3'
+import Crank from './sounds/crank.mp3'
+import Tick from './sounds/tick.mp3'
+import Tock from './sounds/tock.mp3'
 import useInteraction from './use-interaction'
 
-export default function useAudio() {
-  const interacted = useInteraction()
+export default function useAudio({ track = 'crank' }: { track?: string }) {
   const [audio, setAudio] = useState() as any
+  const interacted = useInteraction()
 
   useLayoutEffect(() => {
+    const tracks = {
+      crank: Crank,
+      tick: Tick,
+      tock: Tock
+    }
     ;(async () => {
       if (interacted) {
         const { Howl } = await import('howler')
 
         setAudio(
           new Howl({
-            src: [Click],
+            src: [tracks[track]],
             format: ['mp3'],
             preload: true,
             html5: true
@@ -29,7 +35,7 @@ export default function useAudio() {
         audio.unload()
       }
     }
-  }, [interacted])
+  }, [interacted, track, audio])
 
   return audio
 }

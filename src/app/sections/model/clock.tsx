@@ -21,12 +21,20 @@ export default function Clock() {
   useFavicons({ hours: time.hours })
 
   const intensity = 2.0
-  const { color, base, sound } = useControls('Digits', {
+  const { color, base, sound, track } = useControls('Digits', {
     sound: false,
+    track: {
+      value: 'crank',
+      options: {
+        crank: 'crank',
+        tick: 'tick',
+        tock: 'tock'
+      }
+    },
     base: '#000000',
     color: '#ff5f15'
   })
-  const audio = useAudio() as any
+  const audio = useAudio({ track }) as any
 
   const animateDigit = useCallback(
     (
@@ -83,17 +91,22 @@ export default function Clock() {
     [intensity, animateDigit, audio, sound]
   )
 
+  const [counter, setCounter] = useState(1000)
+
   useLayoutEffect(() => {
     const interval = setInterval(() => {
-      const currentTime = new Date()
+      // const currentTime = new Date()
+      const currentTime = new Date(1737972000000 + counter)
+
       const hours = currentTime.getHours().toString().padStart(2, '0')
       const minutes = currentTime.getMinutes().toString().padStart(2, '0')
       const seconds = currentTime.getSeconds().toString().padStart(2, '0')
       setTime({ hours, minutes, seconds })
-    }, 5)
+      setCounter(counter + 1000)
+    }, 1000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [counter])
 
   const [first, second] = time.hours
   const [third, fourth] = time.minutes
