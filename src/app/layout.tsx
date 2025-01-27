@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: '%s | Tal Hayut'
   },
   metadataBase: siteURL,
-  description: `7 segment display inspired 3D mechanical clock`,
+  description: `3D display clock`,
   icons: [
     {
       rel: 'apple-touch-icon',

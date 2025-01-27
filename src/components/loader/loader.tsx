@@ -24,13 +24,13 @@ export default function Loader() {
       gsap.to(`.${s.letter}`, {
         color: 'rgb(81, 33, 12)',
         textShadow: 'none',
-        ease: 'circ.out',
+        ease: 'back',
         duration: 1,
         delay: 1
       })
       gsap.to(`.${s.loader}`, {
         opacity: 0,
-        delay: 2
+        delay: 1.5
       })
       gsap.to(`.${s.loader}`, {
         display: 'none',
