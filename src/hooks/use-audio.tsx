@@ -35,7 +35,7 @@ export default function useAudio({ track = 'crank' }: { track?: string }) {
         audio.unload()
       }
     }
-  }, [interacted, track, audio])
+  }, [interacted, track])
 
   return audio
 }
