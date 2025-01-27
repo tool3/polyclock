@@ -108,7 +108,7 @@ export default function DigitModel(props) {
   const baseProps = {
     color: base,
     metalness: 1,
-    roughness: 0.6,
+    roughness: 0.55,
     toneMapped: false
   }
 
