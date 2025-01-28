@@ -12,8 +12,11 @@ Polyclock was inspired by @polyfjord's [tutorial](https://youtu.be/uCQ7MTd8Dgs?s
 
 # Missed something?
 Open to any suggestions for new features, enhancements, or functionalities !   
-- Saving to localstorage?    
+- Saving customizations to localstorage?    
 - Timer/stopwatch ?   
+- Preset Themes ?    
+
+Open an issue and let me know ! 
 
 # Stack
 - NextJS
