@@ -22,7 +22,7 @@ export default function CanvasWithModel({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const target = useRef() as any
   const [active, setActive] = useState(false)
-  const { isMobile, isTablet } = useDeviceDetect()
+  const { isMobile, isTablet, isAndroid } = useDeviceDetect()
   const zoom = isMobile && !isTablet ? 13 : 30
 
   useShortcuts({
@@ -37,7 +37,7 @@ export default function CanvasWithModel({
   const { fps, background } = useControls({
     fps: false,
     background: {
-      value: '#722c0b',
+      value: isAndroid ? '#000000' : '#722c0b',
       onEditEnd: (value) => {
         const meta = document.querySelector('meta[name="theme-color"]')
         if (meta) {
