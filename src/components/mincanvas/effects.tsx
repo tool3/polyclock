@@ -10,7 +10,10 @@ import { folder, useControls } from 'leva'
 import { VignetteTechnique } from 'postprocessing'
 import { LUTCubeLoader } from 'three-stdlib'
 
+import { useDeviceDetect } from '~/hooks/use-device-detect'
+
 export default function Effects() {
+  const { isAndroid } = useDeviceDetect()
   const {
     enabled,
     lut,
@@ -28,7 +31,7 @@ export default function Effects() {
     enabled: true,
     LUTs: folder(
       {
-        lutEnabled: true,
+        lutEnabled: !isAndroid,
         lut: {
           value: 'FILMIC.CUBE',
           options: {
@@ -114,7 +117,7 @@ export default function Effects() {
   const lutTexture = useLoader(LUTCubeLoader, lutPath)
 
   return enabled ? (
-    <EffectComposer multisampling={0}>
+    <EffectComposer multisampling={2} stencilBuffer autoClear>
       {bloomEnabled ? (
         <Bloom
           mipmapBlur
