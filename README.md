@@ -10,6 +10,11 @@ Polyclock was inspired by @polyfjord's [tutorial](https://youtu.be/uCQ7MTd8Dgs?s
 - Dynamically updated favicons based on current hour.   
 - All animations done in code.   
 
+# Customization
+Open the control panel to fully customize the clock to your liking:   
+Mobile: 3 finger tap.   
+Desktop: option/alt + D.   
+
 # Missed something?
 Open to any suggestions for new features, enhancements, or functionalities !   
 - Saving customizations to localstorage?    
