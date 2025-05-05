@@ -6,9 +6,12 @@ export default function FrameHang(props) {
   const { nodes } = useGLTF('/models/frame_hang.glb') as any
   const { metalness, roughness } = props
 
-  const { frameColor } = useControls({
-    frameColor: '#000000'
-  })
+  const { frameColor } = useControls(
+    {
+      frameColor: '#000000'
+    },
+    { order: 2 }
+  )
 
   const baseProps = {
     color: frameColor,

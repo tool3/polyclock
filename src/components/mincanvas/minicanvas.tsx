@@ -34,25 +34,31 @@ export default function CanvasWithModel({
     }
   })
 
-  const { fps, background } = useControls({
-    fps: false,
-    background: {
-      value: isAndroid ? '#000000' : '#722c0b',
-      onEditEnd: (value) => {
-        const meta = document.querySelector('meta[name="theme-color"]')
-        if (meta) {
-          meta.setAttribute('content', value)
+  const { fps, background } = useControls(
+    {
+      fps: false,
+      background: {
+        value: isAndroid ? '#000000' : '#722c0b',
+        onEditEnd: (value) => {
+          const meta = document.querySelector('meta[name="theme-color"]')
+          if (meta) {
+            meta.setAttribute('content', value)
+          }
+          return value
         }
-        return value
       }
-    }
-  })
+    },
+    { order: -1 }
+  )
 
-  useControls({
-    ['reset camera']: button(() => {
-      target.current.reset()
-    })
-  })
+  useControls(
+    {
+      ['reset camera']: button(() => {
+        target.current.reset()
+      })
+    },
+    { order: -1 }
+  )
 
   useEffect(() => {
     if (target.current) {

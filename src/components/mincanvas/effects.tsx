@@ -27,92 +27,96 @@ export default function Effects() {
     vignetteOffset,
     scanlineEnabled,
     scanlineStrength
-  } = useControls('Post Processing', {
-    enabled: true,
-    LUTs: folder(
-      {
-        lutEnabled: !isAndroid,
-        lut: {
-          value: 'FILMIC.CUBE',
-          options: {
-            ARCHIVE: 'ARCHIVE.CUBE',
-            ARTISTRY: 'ARTISTRY.CUBE',
-            BOURBON: 'BOURBON.CUBE',
-            CHEMICAL: 'CHEMICAL.CUBE',
-            CHRONICLE: 'CHRONICLE.CUBE',
-            CLAYTON: 'CLAYTON.CUBE',
-            CONCESSION: 'CONCESSION.CUBE',
-            COUNTRY: 'COUNTRY.CUBE',
-            CUBICLE: 'CUBICLE.CUBE',
-            DANGERFIELD: 'DANGERFIELD.CUBE',
-            DONT_BREATH: 'DONT_BREATH.cube',
-            DUSK: 'DUSK.CUBE',
-            ERA: 'ERA.CUBE',
-            EVEREST: 'EVEREST.CUBE',
-            FILMIC: 'FILMIC.CUBE',
-            GHOST: 'GHOST.CUBE',
-            HALFDOME: 'HALFDOME.CUBE',
-            JOKER: 'JOKER.CUBE',
-            LOS_ANGELES: 'LOS_ANGELES.CUBE',
-            MANHATTAN: 'MANHATTAN.CUBE',
-            OTHERDAY: 'OTHERDAY.CUBE',
-            REMY: 'REMY.CUBE',
-            STRANGERS: 'STRANGERS.CUBE',
-            WISHAWOODS: 'WISHAWOODS.CUBE'
+  } = useControls(
+    'Post Processing',
+    {
+      enabled: true,
+      LUTs: folder(
+        {
+          lutEnabled: !isAndroid,
+          lut: {
+            value: 'FILMIC.CUBE',
+            options: {
+              ARCHIVE: 'ARCHIVE.CUBE',
+              ARTISTRY: 'ARTISTRY.CUBE',
+              BOURBON: 'BOURBON.CUBE',
+              CHEMICAL: 'CHEMICAL.CUBE',
+              CHRONICLE: 'CHRONICLE.CUBE',
+              CLAYTON: 'CLAYTON.CUBE',
+              CONCESSION: 'CONCESSION.CUBE',
+              COUNTRY: 'COUNTRY.CUBE',
+              CUBICLE: 'CUBICLE.CUBE',
+              DANGERFIELD: 'DANGERFIELD.CUBE',
+              DONT_BREATH: 'DONT_BREATH.cube',
+              DUSK: 'DUSK.CUBE',
+              ERA: 'ERA.CUBE',
+              EVEREST: 'EVEREST.CUBE',
+              FILMIC: 'FILMIC.CUBE',
+              GHOST: 'GHOST.CUBE',
+              HALFDOME: 'HALFDOME.CUBE',
+              JOKER: 'JOKER.CUBE',
+              LOS_ANGELES: 'LOS_ANGELES.CUBE',
+              MANHATTAN: 'MANHATTAN.CUBE',
+              OTHERDAY: 'OTHERDAY.CUBE',
+              REMY: 'REMY.CUBE',
+              STRANGERS: 'STRANGERS.CUBE',
+              WISHAWOODS: 'WISHAWOODS.CUBE'
+            }
           }
-        }
-      },
-      { collapsed: true }
-    ),
-    Bloom: folder(
-      {
-        bloomEnabled: true,
-        luminanceThreshold: {
-          value: 1.0,
-          min: 0,
-          max: 1
         },
-        luminanceSmoothing: {
-          value: 1.0,
-          min: 0,
-          max: 1
+        { collapsed: true }
+      ),
+      Bloom: folder(
+        {
+          bloomEnabled: true,
+          luminanceThreshold: {
+            value: 1.0,
+            min: 0,
+            max: 1
+          },
+          luminanceSmoothing: {
+            value: 1.0,
+            min: 0,
+            max: 1
+          },
+          intensity: {
+            value: 1.5,
+            min: 0,
+            max: 10
+          }
         },
-        intensity: {
-          value: 1.5,
-          min: 0,
-          max: 10
-        }
-      },
-      { collapsed: true }
-    ),
-    Scanline: folder(
-      {
-        scanlineEnabled: true,
-        scanlineStrength: {
-          value: 0.05,
-          min: 0,
-          max: 1
-        }
-      },
-      { collapsed: true }
-    ),
-    Vignette: folder(
-      {
-        vignetteEnabled: true,
-        vignetteStrength: {
-          value: 0.7,
-          min: 0,
-          max: 1
+        { collapsed: true }
+      ),
+      Scanline: folder(
+        {
+          scanlineEnabled: true,
+          scanlineStrength: {
+            value: 0.05,
+            min: 0,
+            max: 1
+          }
         },
-        vignetteOffset: {
-          value: 0,
-          min: 0,
-          max: 1
-        }
-      },
-      { collapsed: true }
-    )
-  })
+        { collapsed: true }
+      ),
+      Vignette: folder(
+        {
+          vignetteEnabled: true,
+          vignetteStrength: {
+            value: 0.7,
+            min: 0,
+            max: 1
+          },
+          vignetteOffset: {
+            value: 0,
+            min: 0,
+            max: 1
+          }
+        },
+        { collapsed: true }
+      )
+    },
+    { order: 3 }
+  )
   const lutPath = `/textures/LUTs/${lut}`
   const lutTexture = useLoader(LUTCubeLoader, lutPath)
 

@@ -21,19 +21,23 @@ export default function Clock() {
   useFavicons({ hours: time.hours })
 
   const intensity = 2.0
-  const { color, base, sound, track } = useControls('Digits', {
-    sound: false,
-    track: {
-      value: 'tock',
-      options: {
-        crank: 'crank',
-        tick: 'tick',
-        tock: 'tock'
-      }
+  const { color, base, sound, track } = useControls(
+    'Digits',
+    {
+      sound: false,
+      track: {
+        value: 'tock',
+        options: {
+          crank: 'crank',
+          tick: 'tick',
+          tock: 'tock'
+        }
+      },
+      base: '#000000',
+      color: '#ff5f15'
     },
-    base: '#000000',
-    color: '#ff5f15'
-  })
+    { order: 0 }
+  )
   const audio = useAudio({ track }) as any
 
   const animateDigit = useCallback(

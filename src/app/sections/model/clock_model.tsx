@@ -95,7 +95,7 @@ export default function DigitModel(props) {
     }
   }, [state, max])
 
-  const { frame, wall } = useControls({ frame: true, wall: true })
+  const { frame, wall } = useControls({ frame: true, wall: true }, { order: 2 })
 
   const FrameModel = wall ? FrameHang : Frame
 

@@ -5,9 +5,12 @@ import { useControls } from 'leva'
 export default function Wall({ last, dotsHolder, ...props }) {
   const { nodes } = useGLTF('/models/wall.glb') as any
 
-  const { wallColor } = useControls({
-    wallColor: '#000000'
-  })
+  const { wallColor } = useControls(
+    {
+      wallColor: '#000000'
+    },
+    { order: 2 }
+  )
 
   const baseProps = { color: wallColor, roughness: 0.8 }
 
